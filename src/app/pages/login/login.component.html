@@ -1,0 +1,95 @@
+ <div class="container-xxl bg-white p-0">
+    <div class="container-xxl bg-primary page-header">
+        <!-- <div class="container text-center">
+            <h1 class="text-white animated zoomIn mb-3">Registration</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink>Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink="/product">Products</a></li>
+                    <li class="breadcrumb-item text-white active"
+                        aria-current="page" routerLink="/register">Register</li>
+                </ol>
+            </nav>
+        </div> -->
+    </div>
+    <div class="container-xxl py-6">
+        <div class="container">
+            <div
+                class="mx-auto text-center wow fadeInUp"
+                data-wow-delay="0.1s"
+                style="max-width: 600px;">
+                <div
+                    class="d-inline-block border rounded-pill text-primary px-4 mb-3">
+                    Student Login
+                </div>
+                <h2 class="mb-3">Welcome Back! Please Login</h2>
+                <p class="text-muted">
+                    Enter your <strong>Email & Password</strong> to access your
+                    student
+                    dashboard and continue your learning journey.
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input
+                                        type="email"
+                                        class="form-control"
+                                        formControlName="email"
+                                        placeholder="Email Address"
+                                        required />
+                                    <label>Email Address</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input
+                                        type="password"
+                                        class="form-control"
+                                        formControlName="password"
+                                        placeholder="Password"
+                                        required />
+                                    <label>Password</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3"
+                                    type="submit">
+                                    Login
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Success & Error Messages -->
+                        <div *ngIf="successMsg"
+                            class="alert alert-success mt-3">
+                            {{ successMsg }}
+                        </div>
+                        <div *ngIf="errorMsg" class="alert alert-danger mt-3">
+                            {{ errorMsg }}
+                        </div>
+                    </form>
+
+                    <!-- ✅ Don’t have an account? -->
+                    <div class="text-center mt-4">
+                        <span>Don’t have an account?</span>
+                        <a routerLink="/account-registration"
+                            class="text-primary fw-bold">
+                            Sign Up here
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
