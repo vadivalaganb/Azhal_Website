@@ -1,5 +1,5 @@
 {
-  "name": "my-standalone-app",
+  "name": "azhal-website",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

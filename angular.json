@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-standalone-app": {
+    "azhal-website": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/my-standalone-app",
+            "outputPath": "dist/azhal-website",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -33,7 +33,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/lib/animate/animate.min.css",
+              "src/assets/lib/owlcarousel/assets/owl.carousel.min.css"
             ],
             "scripts": [
               "src/assets/lib/wow/wow.min.js"
@@ -67,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "my-standalone-app:build:production"
+              "buildTarget": "azhal-website:build:production"
             },
             "development": {
-              "buildTarget": "my-standalone-app:build:development"
+              "buildTarget": "azhal-website:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -94,7 +96,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/lib/animate/animate.min.css",
+              "src/assets/lib/owlcarousel/assets/owl.carousel.min.css"
             ],
             "scripts": [
               "src/assets/lib/wow/wow.min.js"
