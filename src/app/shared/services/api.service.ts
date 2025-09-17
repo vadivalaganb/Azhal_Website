@@ -22,21 +22,15 @@ export class ApiService {
     return this.post<any>('contact.php', body);
   }
 
-  // ✅ Account registration (Step 1)
-  postAccount(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/account/register.php`, data);
+  postAccount(body: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/register.php`, body);
   }
 
-  // ✅ Student profile registration (Step 2)
-  postStudentRegistration(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/students/register.php`, data);
-  }
-  // ✅ Student profile registration (Step 2)
-  postProfile(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/students/profile.php`, data);
+  postFormData(body: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/register.php`, body);
   }
   postLogin(data: any): Observable<any> {
-    return this.http.post<any>(`${this.baseUrl}/account/login.php`, data);
+    return this.http.post<any>(`${this.baseUrl}/register.php`, data);
   }
 
 }

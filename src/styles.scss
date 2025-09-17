@@ -50,10 +50,12 @@ $dark: #0E2E50;
     width: 38px;
     height: 38px;
   }
+
   &-sm-square {
     width: 32px;
     height: 32px;
   }
+
   &-lg-square {
     width: 48px;
     height: 48px;
@@ -94,6 +96,7 @@ $dark: #0E2E50;
     h1 {
       color: #fff;
     }
+
     img {
       max-height: 90px;
       transition: 0.5s;
@@ -116,6 +119,7 @@ $dark: #0E2E50;
       img {
         max-height: 45px;
       }
+
       h1 {
         color: $primary;
       }
@@ -148,6 +152,7 @@ $dark: #0E2E50;
       h1 {
         color: $primary;
       }
+
       img {
         max-height: 45px;
       }
@@ -227,14 +232,16 @@ $dark: #0E2E50;
 }
 
 .page-header {
-  margin-bottom: 6rem;
-  padding: 12rem 0 6rem;
+  // margin-bottom: 6rem;
+  // padding: 12rem 0 6rem;
+  margin-bottom: 0rem;
+  padding: 8rem 0 2rem;
 
   @media (max-width: 991.98px) {
     padding: 6rem 0;
   }
 
-  .breadcrumb-item + .breadcrumb-item::before {
+  .breadcrumb-item+.breadcrumb-item::before {
     color: rgba(255, 255, 255, 0.5);
   }
 }
@@ -351,6 +358,7 @@ $dark: #0E2E50;
   }
 
   &:hover {
+
     &::before,
     &::after {
       background: $primary;

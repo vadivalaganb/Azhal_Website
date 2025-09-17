@@ -31,32 +31,29 @@ export class LoginComponent {
   // ✅ On login submit
   onLogin() {
     if (this.loginForm.valid) {
-      this.api.postLogin(this.loginForm.value).subscribe({
+      // Add the action property to login payload
+      const payload = {
+        ...this.loginForm.value,
+        action: 'login'
+      };
+
+      this.api.postLogin(payload).subscribe({
         next: (res: any) => {
           if (res.success) {
-            this.successMsg = 'Login successful! Redirecting...';
-            this.errorMsg = '';
-
-            // Store token / session if backend provides
-            localStorage.setItem('token', res.token);
-
-            // Redirect to profile page
-            setTimeout(() => {
-              this.router.navigate(['/profile']);
-            }, 1500);
+            localStorage.setItem("token", res.token);
+            localStorage.setItem("user", JSON.stringify(res.user));
+            this.router.navigate(['/student_registration']);
+            this.successMsg = 'Login successful!';
           } else {
             this.errorMsg = res.message || 'Invalid email or password';
-            this.successMsg = '';
           }
         },
         error: (err) => {
           console.error('Login Error:', err);
           this.errorMsg = 'Server error. Try again later.';
-          this.successMsg = '';
         }
       });
-    } else {
-      this.errorMsg = 'Please enter valid credentials';
     }
   }
+
 }

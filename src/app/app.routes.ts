@@ -7,9 +7,8 @@ import { FeaturesComponent } from './pages/blogs/features/features.component';
 import { TeamComponent } from './pages/blogs/team/team.component';
 import { TestimonialComponent } from './pages/blogs/testimonial/testimonial.component';
 import { ServicesComponent } from './pages/services/services.component';
-import { AccountRegistrationComponent } from './pages/account-registration/account-registration.component';
-import { ProfileRegistrationComponent } from './pages/profile-registration/profile-registration.component';
 import { LoginComponent } from './pages/login/login.component';
+import { StudentregistrationComponent } from './pages/studentregistration/studentregistration.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,10 +16,9 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'product', component: ProductsComponent },
   { path: 'services', component: ServicesComponent },
-  { path: 'account-registration', component: AccountRegistrationComponent },
-  { path: 'app-profile-registration', component: ProfileRegistrationComponent },
   { path: 'features', component: FeaturesComponent },
   { path: 'team', component: TeamComponent },
   { path: 'testimonial', component: TestimonialComponent },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
+  { path: 'student_registration', component: StudentregistrationComponent},
 ];
