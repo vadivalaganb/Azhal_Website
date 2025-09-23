@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
   error: string | null = null;
   baseUrl = '';
 
-  constructor(private api: ApiService) { 
-     this.baseUrl = this.api.getBaseUrl();
+  constructor(private api: ApiService) {
+    this.baseUrl = this.api.getBaseUrl();
   }
 
   ngOnInit() {
@@ -27,8 +27,9 @@ export class HomeComponent implements OnInit {
     this.api.get<any[]>('home_content.php')
       .subscribe({
         next: (data) => {
-          // since API returns an array, just take the first one
-          this.homeContent = data.length > 0 ? data[0] : null;
+          // Filter for active content only
+          const activeContent = data.find(item => item.status === 'active');
+          this.homeContent = activeContent || null;
           this.loading = false;
         },
         error: (err) => {
@@ -38,4 +39,5 @@ export class HomeComponent implements OnInit {
         }
       });
   }
+
 }
