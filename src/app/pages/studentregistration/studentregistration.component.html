@@ -7,227 +7,192 @@
                 profile</p>
         </div> -->
     </div>
-
-    <!-- Registration Stepper -->
+    <!-- Registration Form -->
     <div class="container py-5">
         <div class="mx-auto text-center" style="max-width: 700px;">
             <h2 class="mb-3">Register & Complete Your Profile</h2>
             <p class="text-muted">
-                Step 1: Sign up with Email & Password.<br />
-                Step 2: Fill in your personal and academic details.
+                Please fill in your account, academic, and personal details
+                below.
             </p>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <!-- Stepper Navigation -->
-                <ul class="nav nav-tabs mb-4" id="registrationStepper"
-                    role="tablist">
-                    <li class="nav-item flex-fill text-center">
-                        <a class="nav-link active" id="step1-tab"
-                            data-bs-toggle="tab" href="#step1" role="tab"
-                            aria-selected="true">Step 1: Account</a>
-                    </li>
-                    <li class="nav-item flex-fill text-center">
-                        <a class="nav-link disabled" id="step2-tab"
-                            data-bs-toggle="tab" href="#step2" role="tab"
-                            aria-selected="false" tabindex="-1">Step 2:
-                            Profile</a>
-                    </li>
-                </ul>
+                <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()"
+                    enctype="multipart/form-data">
+                    <div class="row g-3">
 
-                <div class="tab-content">
-                    <!-- Step 1: Account -->
-                    <div class="tab-pane fade show active" id="step1"
-                        role="tabpanel" aria-labelledby="step1-tab">
-                        <form [formGroup]="accountForm"
-                            (ngSubmit)="onAccountSubmit()">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="fullName"
-                                            type="text" class="form-control"
-                                            placeholder="Full Name" />
-                                        <label>Full Name</label>
-                                        <div
-                                            *ngIf="accountForm.get('fullName')?.invalid && accountForm.get('fullName')?.touched"
-                                            class="text-danger small">
-                                            Full Name is required (min 3 chars).
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="email"
-                                            type="email" class="form-control"
-                                            placeholder="Email Address" />
-                                        <label>Email Address</label>
-                                        <div
-                                            *ngIf="accountForm.get('email')?.invalid && accountForm.get('email')?.touched"
-                                            class="text-danger small">
-                                            Valid Email is required.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="password"
-                                            type="password" class="form-control"
-                                            placeholder="Password" />
-                                        <label>Password</label>
-                                        <div
-                                            *ngIf="accountForm.get('password')?.invalid && accountForm.get('password')?.touched"
-                                            class="text-danger small">
-                                            Password is required (min 6 chars).
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="confirmPassword"
-                                            type="password" class="form-control"
-                                            placeholder="Confirm Password" />
-                                        <label>Confirm Password</label>
-                                        <div
-                                            *ngIf="accountForm.errors?.['mismatch'] && accountForm.get('confirmPassword')?.touched"
-                                            class="text-danger small">
-                                            Passwords must match.
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button type="submit"
-                                        class="btn btn-primary w-100 py-3"
-                                        [disabled]="accountForm.invalid">Next:
-                                        Complete Profile</button>
-                                </div>
+                        <!-- Institution Name -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input formControlName="institutionName"
+                                    type="text" class="form-control"
+                                    placeholder="Institution Name" />
+                                <label>Institution Name</label>
                             </div>
-
-                            <div *ngIf="accountSuccessMsg"
-                                class="alert alert-success mt-3">{{
-                                accountSuccessMsg }}</div>
-                            <div *ngIf="accountErrorMsg"
-                                class="alert alert-danger mt-3">{{
-                                accountErrorMsg }}</div>
-                        </form>
-                        <!-- Already have account -->
-                        <div class="text-center mt-4">
-                            <p class="mb-0">
-                                Already have an account?
-                                <a routerLink="/login"
-                                    class="text-primary fw-bold">Login here</a>
-                            </p>
+                            <div
+                                *ngIf="registrationForm.get('institutionName')?.errors && registrationForm.get('institutionName')?.touched"
+                                class="text-danger small">
+                                <span
+                                    *ngIf="registrationForm.get('institutionName')?.hasError('required')">Institution
+                                    Name is required.</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Step 2: Profile -->
-                    <div class="tab-pane fade" id="step2" role="tabpanel"
-                        aria-labelledby="step2-tab">
-                        <form [formGroup]="profileForm"
-                            (ngSubmit)="onProfileSubmit()"
-                            enctype="multipart/form-data">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="institutionName"
-                                            type="text" class="form-control"
-                                            placeholder="Institution Name" />
-                                        <label>Institution Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="academicYear"
-                                            type="text" class="form-control"
-                                            placeholder="Academic Year" />
-                                        <label>Academic Year</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="dob" type="date"
-                                            class="form-control"
-                                            placeholder="Date of Birth" />
-                                        <label>Date of Birth</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Gender</label>
-                                    <div>
-                                        <input formControlName="gender"
-                                            type="radio" value="Male" /> Male
-                                        <input formControlName="gender"
-                                            type="radio" value="Female"
-                                            class="ms-3" /> Female
-                                        <input formControlName="gender"
-                                            type="radio" value="Other"
-                                            class="ms-3" /> Other
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea formControlName="address"
-                                            class="form-control"
-                                            placeholder="Address"
-                                            style="height: 80px"></textarea>
-                                        <label>Address</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="mobile"
-                                            type="text" class="form-control"
-                                            placeholder="Mobile" />
-                                        <label>Mobile</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="department"
-                                            type="text" class="form-control"
-                                            placeholder="Department" />
-                                        <label>Department</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input formControlName="course"
-                                            type="text" class="form-control"
-                                            placeholder="Course" />
-                                        <label>Course</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label">Profile
-                                        Image</label>
-                                    <input type="file" class="form-control"
-                                        (change)="onFileChange($event)" />
-                                </div>
-
-                                <div class="col-12">
-                                    <button type="submit"
-                                        class="btn btn-primary w-100 py-3"
-                                        [disabled]="profileForm.invalid">Submit
-                                        Profile</button>
-                                </div>
+                        <!-- Academic Year -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input formControlName="academicYear"
+                                    type="text" class="form-control"
+                                    placeholder="Academic Year" />
+                                <label>Academic Year</label>
                             </div>
+                            <div
+                                *ngIf="registrationForm.get('academicYear')?.errors && registrationForm.get('academicYear')?.touched"
+                                class="text-danger small">
+                                <span
+                                    *ngIf="registrationForm.get('academicYear')?.hasError('required')">Academic
+                                    Year is required.</span>
+                            </div>
+                        </div>
 
-                            <div *ngIf="profileSuccessMsg"
-                                class="alert alert-success mt-3">{{
-                                profileSuccessMsg }}</div>
-                            <div *ngIf="profileErrorMsg"
-                                class="alert alert-danger mt-3">{{
-                                profileErrorMsg }}</div>
-                        </form>
+                        <!-- Date of Birth -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input formControlName="dob" type="date"
+                                    class="form-control"
+                                    placeholder="Date of Birth" />
+                                <label>Date of Birth</label>
+                            </div>
+                            <div
+                                *ngIf="registrationForm.get('dob')?.errors && registrationForm.get('dob')?.touched"
+                                class="text-danger small">
+                                <span
+                                    *ngIf="registrationForm.get('dob')?.hasError('required')">Date
+                                    of Birth is required.</span>
+                            </div>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="col-md-6">
+                            <label class="form-label">Gender</label>
+                            <div>
+                                <input formControlName="gender" type="radio"
+                                    value="Male" /> Male
+                                <input formControlName="gender" type="radio"
+                                    value="Female" class="ms-3" /> Female
+                                <input formControlName="gender" type="radio"
+                                    value="Other" class="ms-3" /> Other
+                            </div>
+                            <div
+                                *ngIf="registrationForm.get('gender')?.errors && registrationForm.get('gender')?.touched"
+                                class="text-danger small">
+                                <span
+                                    *ngIf="registrationForm.get('gender')?.hasError('required')">Please
+                                    select a gender.</span>
+                            </div>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea formControlName="address"
+                                    class="form-control"
+                                    placeholder="Address"
+                                    style="height: 80px"></textarea>
+                                <label>Address</label>
+                            </div>
+                            <div
+                                *ngIf="registrationForm.get('address')?.errors && registrationForm.get('address')?.touched"
+                                class="text-danger small">
+                                <span
+                                    *ngIf="registrationForm.get('address')?.hasError('required')">Address
+                                    is required.</span>
+                                <span
+                                    *ngIf="registrationForm.get('address')?.hasError('minlength')">Address
+                                    must be at least 10 characters.</span>
+                            </div>
+                        </div>
+
+                        <!-- Department -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input formControlName="department"
+                                    type="text" class="form-control"
+                                    placeholder="Department" />
+                                <label>Department</label>
+                            </div>
+                            <div
+                                *ngIf="registrationForm.get('department')?.errors && registrationForm.get('department')?.touched"
+                                class="text-danger small">
+                                <span
+                                    *ngIf="registrationForm.get('department')?.hasError('required')">Department
+                                    is required.</span>
+                            </div>
+                        </div>
+
+                        <!-- Course -->
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input formControlName="course" type="text"
+                                    class="form-control"
+                                    placeholder="Course" />
+                                <label>Course</label>
+                            </div>
+                            <div
+                                *ngIf="registrationForm.get('course')?.errors && registrationForm.get('course')?.touched"
+                                class="text-danger small">
+                                <span
+                                    *ngIf="registrationForm.get('course')?.hasError('required')">Course
+                                    is required.</span>
+                            </div>
+                        </div>
+
+                        <!-- Profile Image -->
+                        <div class="col-md-6">
+                            <label class="form-label">Profile Image</label>
+                            <input type="file" class="form-control"
+                                (change)="onFileChange($event)" />
+                            <div *ngIf="imagePreview" class="mt-2">
+                                <img [src]="imagePreview"
+                                    alt="Profile Preview"
+                                    class="img-thumbnail"
+                                    style="max-height: 150px;" />
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="col-12">
+                            <button type="submit"
+                                class="btn btn-primary w-100 py-3"
+                                [disabled]="registrationForm.invalid">
+                                Register
+                            </button>
+                        </div>
+
                     </div>
-                </div>
 
-                <!-- Logout / Switch User Option -->
-                <div class="text-center mt-4" *ngIf="accountCreated">
+                    <div *ngIf="successMsg"
+                        class="alert alert-success mt-3">
+                        {{ successMsg }}
+                    </div>
+                    <div *ngIf="errorMsg" class="alert alert-danger mt-3">
+                        {{ errorMsg }}
+                    </div>
+                </form>
+
+                <!-- Already have account -->
+                <div class="text-center mt-4">
+                    <p class="mb-0">
+                        Already have an account?
+                        <a routerLink="/login"
+                            class="text-primary fw-bold">Login here</a>
+                    </p>
+                </div>
+                <div class="text-center mt-4">
                     <button (click)="logout()"
-                        class="btn btn-outline-danger">Logout & Switch
-                        User</button>
+                        class="btn btn-outline-danger">Logout</button>
                 </div>
             </div>
         </div>

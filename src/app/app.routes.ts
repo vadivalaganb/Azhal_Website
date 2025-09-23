@@ -9,6 +9,7 @@ import { TestimonialComponent } from './pages/blogs/testimonial/testimonial.comp
 import { ServicesComponent } from './pages/services/services.component';
 import { LoginComponent } from './pages/login/login.component';
 import { StudentregistrationComponent } from './pages/studentregistration/studentregistration.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,5 +21,6 @@ export const routes: Routes = [
   { path: 'team', component: TeamComponent },
   { path: 'testimonial', component: TestimonialComponent },
   { path: 'login', component: LoginComponent},
+  { path: 'signup', component: SignupComponent},
   { path: 'student_registration', component: StudentregistrationComponent},
 ];

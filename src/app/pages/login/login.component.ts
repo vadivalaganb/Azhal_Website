@@ -23,7 +23,7 @@ export class LoginComponent {
   ) {
     // ✅ Create form with validation
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      contact: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
@@ -31,7 +31,6 @@ export class LoginComponent {
   // ✅ On login submit
   onLogin() {
     if (this.loginForm.valid) {
-      // Add the action property to login payload
       const payload = {
         ...this.loginForm.value,
         action: 'login'
@@ -41,19 +40,30 @@ export class LoginComponent {
         next: (res: any) => {
           if (res.success) {
             localStorage.setItem("token", res.token);
+            localStorage.setItem("user_id", res.user.id); // Store for registration
             localStorage.setItem("user", JSON.stringify(res.user));
             this.router.navigate(['/student_registration']);
             this.successMsg = 'Login successful!';
+            setTimeout(() => {
+              this.successMsg = '';
+            }, 1000);
           } else {
             this.errorMsg = res.message || 'Invalid email or password';
+            setTimeout(() => {
+              this.errorMsg = '';
+            }, 2000);
           }
         },
         error: (err) => {
           console.error('Login Error:', err);
           this.errorMsg = 'Server error. Try again later.';
+          setTimeout(() => {
+            this.errorMsg = '';
+          }, 2000);
         }
       });
     }
   }
+
 
 }

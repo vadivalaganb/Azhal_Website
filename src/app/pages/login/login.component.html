@@ -39,12 +39,19 @@
                             <div class="col-12">
                                 <div class="form-floating">
                                     <input
-                                        type="email"
+                                        type="text"
                                         class="form-control"
-                                        formControlName="email"
-                                        placeholder="Email Address"
+                                        formControlName="contact"
+                                        placeholder="Enter Email Address or Mobile Number"
                                         required />
-                                    <label>Email Address</label>
+                                    <label>Email or Mobile Number</label>
+                                </div>
+                                <div
+                                    *ngIf="loginForm.get('contact')?.errors && loginForm.get('contact')?.touched"
+                                    class="text-danger small">
+                                    <span
+                                        *ngIf="loginForm.get('contact')?.hasError('required')">Email
+                                        or Mobile Number is required.</span>
                                 </div>
                             </div>
 
@@ -58,11 +65,22 @@
                                         required />
                                     <label>Password</label>
                                 </div>
+                                <div
+                                    *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched"
+                                    class="text-danger small">
+                                    <span
+                                        *ngIf="loginForm.get('password')?.hasError('required')">Password
+                                        is required.</span>
+                                    <span
+                                        *ngIf="loginForm.get('password')?.hasError('minlength')">Minimum
+                                        6 characters required.</span>
+                                </div>
                             </div>
 
                             <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3"
-                                    type="submit">
+                                    type="submit"
+                                    [disabled]="loginForm.invalid">
                                     Login
                                 </button>
                             </div>
@@ -81,7 +99,7 @@
                     <!-- ✅ Don’t have an account? -->
                     <div class="text-center mt-4">
                         <span>Don’t have an account?</span>
-                        <a routerLink="/student_registration"
+                        <a routerLink="/signup"
                             class="text-primary fw-bold">
                             Sign Up here
                         </a>

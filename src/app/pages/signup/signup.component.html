@@ -1,0 +1,137 @@
+<div class="container-xxl bg-white p-0">
+    <!-- Page Header -->
+    <div class="container-xxl bg-primary page-header">
+        <!-- <div class="container text-center">
+            <h1 class="text-white mb-2">Student Registration</h1>
+            <p class="text-white mb-0">Register your account and complete your
+                profile</p>
+        </div> -->
+    </div>
+
+    <!-- Registration Stepper -->
+    <div class="container-xxl col-lg-6 py-6">
+        <div class="container">
+            <div class="mx-auto text-center" style="max-width: 500px;">
+                <h2 class="mb-3">Create Your Account</h2>
+                <p class="text-muted">
+                    Welcome to <strong>Azhalit Solutions</strong>! Please
+                    complete the form below to register and get started with our
+                    platform.
+                </p>
+
+            </div>
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()"
+                class="row g-3">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input formControlName="firstName" type="text"
+                            class="form-control" placeholder="First Name">
+                        <label>First Name</label>
+                    </div>
+                    <div
+                        *ngIf="signupForm.get('firstName')?.errors && signupForm.get('firstName')?.touched"
+                        class="text-danger small">
+                        <span
+                            *ngIf="signupForm.get('firstName')?.hasError('required')">First
+                            Name is required.</span>
+                        <span
+                            *ngIf="signupForm.get('firstName')?.hasError('minlength')">Minimum
+                            2 characters required.</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input formControlName="lastName" type="text"
+                            class="form-control" placeholder="Last Name">
+                        <label>Last Name</label>
+                    </div>
+                    <div
+                        *ngIf="signupForm.get('lastName')?.errors && signupForm.get('lastName')?.touched"
+                        class="text-danger small">
+                        <span
+                            *ngIf="signupForm.get('lastName')?.hasError('required')">Last
+                            Name is required.</span>
+                        <span
+                            *ngIf="signupForm.get('lastName')?.hasError('minlength')">Minimum
+                            2 characters required.</span>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-floating">
+                        <input formControlName="contact" type="text"
+                            class="form-control" placeholder="Email or Mobile">
+                        <label>Email or Mobile</label>
+                    </div>
+                    <div
+                        *ngIf="signupForm.get('contact')?.errors && signupForm.get('contact')?.touched"
+                        class="text-danger small">
+                        <span
+                            *ngIf="signupForm.get('contact')?.hasError('required')">This
+                            field is required.</span>
+                        <span
+                            *ngIf="signupForm.get('contact')?.hasError('emailOrMobile')">Please
+                            enter a valid email or 10-digit mobile
+                            number.</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input formControlName="password" type="password"
+                            class="form-control" placeholder="Password">
+                        <label>Password</label>
+                    </div>
+                    <div
+                        *ngIf="signupForm.get('password')?.errors && signupForm.get('password')?.touched"
+                        class="text-danger small">
+                        <span
+                            *ngIf="signupForm.get('password')?.hasError('required')">Password
+                            is required.</span>
+                        <span
+                            *ngIf="signupForm.get('password')?.hasError('minlength')">Minimum
+                            6 characters required.</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input formControlName="confirmPassword" type="password"
+                            class="form-control" placeholder="Confirm Password">
+                        <label>Confirm Password</label>
+                    </div>
+                    <div
+                        *ngIf="signupForm.get('confirmPassword')?.errors?.['required'] && signupForm.get('confirmPassword')?.touched"
+                        class="text-danger small">
+                        Confirm Password is required.
+                    </div>
+                    <div
+                        *ngIf="signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.touched"
+                        class="text-danger small">
+                        Passwords must match.
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary w-100 py-3"
+                        [disabled]="signupForm.invalid">Sign Up</button>
+                </div>
+
+                <div *ngIf="successMsg" class="alert alert-success mt-3">
+                    {{ successMsg }}
+                </div>
+                <div *ngIf="errorMsg" class="alert alert-danger mt-3">
+                    {{ errorMsg }}
+                </div>
+
+                <div class="text-center mt-3">
+                    <p>Already have an account?
+                        <a routerLink="/login"
+                            class="text-primary fw-bold">Login here</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
