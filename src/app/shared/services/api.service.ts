@@ -36,4 +36,11 @@ export class ApiService {
     return this.http.post<any>(`${this.baseUrl}/register.php`, data);
   }
 
+  getAboutSections(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/about_content.php`);
+  }
+
+  getAboutItems(sectionId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/about_items.php?section_id=${sectionId}`);
+  }
 }

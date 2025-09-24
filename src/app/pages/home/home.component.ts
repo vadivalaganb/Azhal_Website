@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
       .subscribe({
         next: (data) => {
           // Filter for active content only
-          const activeContent = data.find(item => item.status === 'active');
+          const activeContent = data.find(item => +item.status === 1);
           this.homeContent = activeContent || null;
           this.loading = false;
         },
