@@ -7,37 +7,36 @@ import { ApiService } from '../../shared/services/api.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   homeContent: any = null;
   loading = true;
   error: string | null = null;
-  baseUrl = '';
+   baseUrl = '';
 
   constructor(private api: ApiService) {
-    this.baseUrl = this.api.getBaseUrl();
-  }
+        this.baseUrl = this.api.getBaseUrl();
+   }
 
   ngOnInit() {
     this.loadHomeContent();
   }
 
   loadHomeContent() {
-    this.api.get<any[]>('home_content.php')
-      .subscribe({
-        next: (data) => {
-          // Filter for active content only
-          const activeContent = data.find(item => +item.status === 1);
-          this.homeContent = activeContent || null;
-          this.loading = false;
-        },
-        error: (err) => {
-          console.error('API error:', err);
-          this.error = 'Failed to load content';
-          this.loading = false;
-        }
-      });
+    this.loading = true;
+    this.api.getHomeContent().subscribe({
+      next: (data) => {
+        const activeContent = data.find(item => +item.status === 1);
+        this.homeContent = activeContent || null;
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('API error:', err);
+        this.error = 'Failed to load content';
+        this.loading = false;
+      }
+    });
   }
-
+  
 }

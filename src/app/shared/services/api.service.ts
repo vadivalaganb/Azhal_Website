@@ -35,7 +35,9 @@ export class ApiService {
   postLogin(data: any): Observable<any> {
     return this.http.post<any>(`${this.baseUrl}/register.php`, data);
   }
-
+  getHomeContent(): Observable<any[]> {
+    return this.get<any[]>('home_content.php');
+  }
   getAboutSections(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/about_content.php`);
   }
@@ -43,4 +45,9 @@ export class ApiService {
   getAboutItems(sectionId: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/about_items.php?section_id=${sectionId}`);
   }
+
+  getServiceContents(): Observable<any[]> {
+    return this.get<any[]>('services_content.php');
+  }
+
 }

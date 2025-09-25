@@ -1,13 +1,13 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { ApiService } from '../../shared/services/api.service';
 import { RouterLink, RouterModule } from '@angular/router';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule} from '@angular/common';
 declare var $: any;
 declare var WOW: any;
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [RouterLink, RouterModule, NgFor, NgIf],
+  imports: [RouterLink, RouterModule, CommonModule],
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
