@@ -13,11 +13,11 @@ export class HomeComponent implements OnInit {
   homeContent: any = null;
   loading = true;
   error: string | null = null;
-   baseUrl = '';
+  baseUrl = '';
 
   constructor(private api: ApiService) {
-        this.baseUrl = this.api.getBaseUrl();
-   }
+    this.baseUrl = this.api.getBaseUrl();
+  }
 
   ngOnInit() {
     this.loadHomeContent();
@@ -34,9 +34,10 @@ export class HomeComponent implements OnInit {
       error: (err) => {
         console.error('API error:', err);
         this.error = 'Failed to load content';
+        setTimeout(() => this.error = '', 1000);
         this.loading = false;
       }
     });
   }
-  
+
 }

@@ -74,6 +74,7 @@ export class StudentregistrationComponent {
           }
         } else {
           this.errorMsg = res.message || 'Failed to load profile data.';
+          setTimeout(() => this.errorMsg = '', 1000);
         }
       },
       error: () => {
@@ -93,6 +94,7 @@ export class StudentregistrationComponent {
 
     if (!this.userId) {
       this.errorMsg = 'User not logged in. Please login first.';
+      setTimeout(() => this.errorMsg = '', 1000);
       return;
     }
 

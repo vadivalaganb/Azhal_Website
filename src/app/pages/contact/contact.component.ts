@@ -34,16 +34,19 @@ export class ContactComponent {
 
           if (res.success) {
             this.successMsg = res.message || 'Message sent successfully';
+            setTimeout(() => this.successMsg = '', 1000);
             this.errorMsg = '';
             this.contactForm.reset();
           } else {
             this.errorMsg = res.message || 'Failed to send message';
+            setTimeout(() => this.errorMsg = '', 1000);
             this.successMsg = '';
           }
         },
         error: (err) => {
           console.error('HTTP Error:', err);
           this.errorMsg = 'Server error. Try again later.';
+          setTimeout(() => this.errorMsg = '', 1000);
           this.successMsg = '';
         }
       });
