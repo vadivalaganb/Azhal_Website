@@ -49,5 +49,7 @@ export class ApiService {
   getServiceContents(): Observable<any[]> {
     return this.get<any[]>('services_content.php');
   }
-
+  getTeamMembers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/team_members.php`);
+  }
 }
