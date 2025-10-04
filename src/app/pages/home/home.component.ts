@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../shared/services/api.service';
-
+declare var $: any;
+declare var WOW: any;
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -10,17 +11,35 @@ import { ApiService } from '../../shared/services/api.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  sections: any[] = [];
+  itemsMap: { [sectionId: string]: any[] } = {};
   homeContent: any = null;
   loading = true;
   error: string | null = null;
   baseUrl = '';
+  serviceContents: any[] = [];
+  teamMembers: any[] = [];
+  testimonials: any[] = [];
 
   constructor(private api: ApiService) {
     this.baseUrl = this.api.getBaseUrl();
   }
 
   ngOnInit() {
+    new WOW().init();
+
+    $('.owl-carousel').owlCarousel({
+      loop: true,
+      margin: 10,
+      autoplay: true,
+      autoplayTimeout: 3000,
+      items: 1
+    });
     this.loadHomeContent();
+    this.loadSections();
+    this.loadServiceSection();
+    this.loadTeamMembers();
+    this.loadTestimonials();
   }
 
   loadHomeContent() {
@@ -39,5 +58,82 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+  loadSections(): void {
+    this.api.getAboutSections().subscribe({
+      next: (sections) => {
+        this.sections = sections;
 
+        // For each section, fetch its items
+        sections.forEach(sec => {
+          this.loadItems(sec.id);
+        });
+      },
+      error: (err) => console.error('Failed to load sections', err)
+    });
+  }
+
+  loadItems(sectionId: string | number): void {
+    this.api.getAboutItems(Number(sectionId)).subscribe({
+      next: (items) => this.itemsMap[sectionId] = items,
+      error: (err) => console.error('Failed to load items for section', sectionId, err)
+    });
+  }
+  loadServiceSection(): void {
+    this.api.getServiceContents().subscribe({
+      next: (res) => {
+        this.serviceContents = res || [];
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error loading services', err);
+        this.loading = false;
+      }
+    });
+  }
+  loadTeamMembers() {
+    this.api.getTeamMembers().subscribe({
+      next: (res) => {
+        this.teamMembers = res;
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    });
+  }
+  loadTestimonials(): void {
+    this.api.getTestimonials().subscribe({
+      next: (res) => {
+        this.testimonials = (res || [])
+          .filter(item => +item.status === 1)
+          .map(item => ({
+            name: item.name,
+            profession: item.profession,
+            message: item.message,
+            image: item.image && item.image !== ''
+              ? this.baseUrl.replace(/\/+$/, '') + '/' + item.image.replace(/^\/+/, '')
+              : 'assets/default-profile.png'
+          }));
+
+        setTimeout(() => {
+          ($('.testimonial-carousel') as any).owlCarousel({
+            loop: true,
+            margin: 30,
+            autoplay: true,
+            autoplayTimeout: 4000,
+            items: 3,
+            center: true,
+            nav: true,
+            navText: ['<', '>'],
+            rewind: true,
+            responsive: {
+              0: { items: 1 },
+              768: { items: 2 },
+              992: { items: 3 }
+            }
+          });
+        }, 0);
+      },
+      error: (err) => console.error(err)
+    });
+  }
 }

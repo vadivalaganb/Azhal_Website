@@ -61,7 +61,8 @@
                         <div
                             class="d-inline-block border rounded-pill text-primary px-4 mb-3">Features</div>
                         <h2 class="mb-4">{{ section.header_name }}</h2>
-                        <p class="description-text">{{ section.description }}</p>
+                        <p class="description-text">{{ section.description
+                            }}</p>
                         <a class="btn btn-primary rounded-pill py-3 px-5 mt-2"
                             href>Read More</a>
                     </div>
@@ -100,70 +101,19 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-md-6 wow fadeInUp"
+                    *ngFor="let member of teamMembers; let i= index"
                     data-wow-delay="0.1s">
                     <div class="team-item">
-                        <h5>Full Name</h5>
-                        <p class="mb-4">Designation</p>
+                        <h5>{{member.name}}</h5>
+                        <p class="mb-4">{{member.designation}}</p>
                         <img class="img-fluid rounded-circle w-100 mb-4"
-                            src="assets/team-1.jpg" alt>
+                            [src]="member.profile_image ? apiService.getBaseUrl() + '/' +  member.profile_image: 'assets/team-1.jpg'"
+                            alt="{{member.name}}">
                         <div class="d-flex justify-content-center">
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp"
-                    data-wow-delay="0.3s">
-                    <div class="team-item">
-                        <h5>Full Name</h5>
-                        <p class="mb-4">Designation</p>
-                        <img class="img-fluid rounded-circle w-100 mb-4"
-                            src="assets/team-2.jpg" alt>
-                        <div class="d-flex justify-content-center">
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp"
-                    data-wow-delay="0.5s">
-                    <div class="team-item">
-                        <h5>Full Name</h5>
-                        <p class="mb-4">Designation</p>
-                        <img class="img-fluid rounded-circle w-100 mb-4"
-                            src="assets/team-3.jpg" alt>
-                        <div class="d-flex justify-content-center">
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 wow fadeInUp"
-                    data-wow-delay="0.7s">
-                    <div class="team-item">
-                        <h5>Full Name</h5>
-                        <p class="mb-4">Designation</p>
-                        <img class="img-fluid rounded-circle w-100 mb-4"
-                            src="assets/team-4.jpg" alt>
-                        <div class="d-flex justify-content-center">
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-square text-primary bg-white m-1"
-                                href><i class="fab fa-linkedin-in"></i></a>
+                            <a *ngFor="let social of member.social_links"
+                                class="btn btn-square text-primary bg-white m-1"
+                                [href]="social.url" target="_blank">
+                                <i [class]="social.icon"></i></a>
                         </div>
                     </div>
                 </div>

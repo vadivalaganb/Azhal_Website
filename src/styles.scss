@@ -306,7 +306,7 @@ $dark: #0E2E50;
 
   .owl-nav {
     margin-top: 20px;
-    display: flex;
+    display: flex !important;
     justify-content: center;
 
     .owl-prev,

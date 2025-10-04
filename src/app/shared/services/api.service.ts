@@ -52,4 +52,10 @@ export class ApiService {
   getTeamMembers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/team_members.php`);
   }
+  getProducts(): Observable<any[]> {
+    return this.get<any[]>('product_content.php');
+  }
+  getTestimonials(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/testimonial.php?action=read`);
+  }
 }

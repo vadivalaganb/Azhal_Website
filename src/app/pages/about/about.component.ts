@@ -1,7 +1,7 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { ApiService } from '../../shared/services/api.service';
 import { RouterLink, RouterModule } from '@angular/router';
-import { CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
 declare var $: any;
 declare var WOW: any;
 @Component({
@@ -13,10 +13,11 @@ declare var WOW: any;
 })
 export class AboutComponent implements AfterViewInit {
   sections: any[] = [];
+  teamMembers: any[] = [];
   itemsMap: { [sectionId: string]: any[] } = {}; // Map items by section
   baseUrl = '';
 
-  constructor(private apiService: ApiService) {
+  constructor(public apiService: ApiService) {
     this.baseUrl = this.apiService.getBaseUrl();
   }
 
@@ -32,6 +33,7 @@ export class AboutComponent implements AfterViewInit {
     });
     // Fetch sections first
     this.loadSections();
+    this.loadTeamMembers();
   }
 
   loadSections(): void {
@@ -52,6 +54,16 @@ export class AboutComponent implements AfterViewInit {
     this.apiService.getAboutItems(Number(sectionId)).subscribe({
       next: (items) => this.itemsMap[sectionId] = items,
       error: (err) => console.error('Failed to load items for section', sectionId, err)
+    });
+  }
+  loadTeamMembers(): void {
+    this.apiService.getTeamMembers().subscribe({
+      next: (res) => {
+        this.teamMembers = res;
+      },
+      error: (err) => {
+        console.error(err);
+      }
     });
   }
 }
