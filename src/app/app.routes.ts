@@ -10,6 +10,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import { LoginComponent } from './pages/login/login.component';
 import { StudentregistrationComponent } from './pages/studentregistration/studentregistration.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { UnderConstructionComponent } from './shared/app-under-construction';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,7 +21,9 @@ export const routes: Routes = [
   { path: 'features', component: FeaturesComponent },
   { path: 'team', component: TeamComponent },
   { path: 'testimonial', component: TestimonialComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'signup', component: SignupComponent},
-  { path: 'student_registration', component: StudentregistrationComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'student_registration', component: StudentregistrationComponent },
+  { path: 'under-construction', component: UnderConstructionComponent }
+
 ];
