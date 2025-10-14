@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../shared/services/api.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 declare var $: any;
 declare var WOW: any;
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss']
 })

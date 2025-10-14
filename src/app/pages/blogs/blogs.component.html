@@ -1,0 +1,146 @@
+ <div class="bg-white p-0">
+
+    <div class="bg-primary page-header">
+        <div class="container text-center">
+            <h1 class="text-white animated zoomIn mb-3">Blogs</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink>Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink="/contact">Contact</a></li>
+                    <li class="breadcrumb-item text-white active"
+                        aria-current="page" routerLink="/blogs">Blogs</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <section class="blogs-section py-5">
+        <div class="container">
+            <!-- Section Header -->
+            <div class="text-center mb-5">
+                <p class="section-subtitle">OUR INSIGHTS</p>
+                <h2 class="section-title">Latest Blog Posts</h2>
+                <p class="section-description">
+                    Stay updated with the latest trends, insights, and success
+                    stories from our experts.
+                </p>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="filter-section mb-4">
+                <!-- Filter Name -->
+                <div class="d-flex align-items-center justify-content-between bg-color">
+                    <div class="section-filter-title">
+                        Filter
+                    </div>
+                    <div class="filter-dropdown-container" #filterDropdown>
+                        <button
+                            class="filter-dropdown-btn"
+                            [class.active]="isDropdownOpen"
+                            (click)="toggleDropdown($event)">
+                            <span class="filter-label">{{ filterButtonText
+                                }}</span>
+                            <span class="filter-icon">
+                                <svg width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M3 6h18M7 12h10m-7 6h4"></path>
+                                </svg>
+                            </span>
+                        </button>
+
+                        <div class="filter-dropdown-menu"
+                            [class.show]="isDropdownOpen">
+                            <div class="filter-dropdown-header">
+                                <span class="filter-title">Filter by
+                                    Category</span>
+                                <button class="close-btn"
+                                    (click)="closeDropdown()">×</button>
+                            </div>
+
+                            <div class="filter-search">
+                                <input
+                                    type="text"
+                                    placeholder="Search categories..."
+                                    class="filter-search-input"
+                                    [(ngModel)]="searchTerm">
+                            </div>
+
+                            <div class="filter-options">
+                                <label
+                                    class="filter-option"
+                                    *ngFor="let option of getFilteredOptions()"
+                                    [style.display]="option.count > 0 || option.value === 'all' ? 'flex' : 'none'">
+                                    <input type="checkbox"
+                                        [value]="option.value"
+                                        [checked]="isFilterSelected(option.value)"
+                                        (change)="onFilterChange(option.value, $event)">
+
+                                    <span class="checkmark"></span>
+                                    <span class="option-text">{{ option.label
+                                        }}</span>
+                                    <span class="count">({{ option.count
+                                        }})</span>
+                                </label>
+                            </div>
+
+                            <div class="filter-actions">
+                                <button class="btn-clear"
+                                    (click)="clearAllFilters()">Clear
+                                    All</button>
+                                <button class="btn-apply"
+                                    (click)="applyFilters()">Apply
+                                    Filters</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Filters Display -->
+                <div class="active-filters"
+                    *ngIf="getActiveFilters().length > 0">
+                    <div
+                        class="filter-chip"
+                        *ngFor="let filter of getActiveFilters()">
+                        {{ filter.label }}
+                        <button class="remove-filter"
+                            (click)="removeFilter(filter.value)">×</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6"
+                    *ngFor="let blog of filteredBlogs">
+                    <div class="blog-card"
+                        [attr.data-category]="blog.categorySlug || createSlug(blog.category)">
+                        <div class="badge">{{ blog.category }}</div>
+                        <img [src]="blog.image" [alt]="blog.title"
+                            class="blog-image">
+                        <div class="blog-content">
+                            <h3 class="blog-title">{{ blog.title }}</h3>
+                            <p class="blog-summary">{{ blog.summary }}</p>
+                            <div class="blog-meta">
+                                <span>{{ blog.author }} • {{ blog.date }}</span>
+                                <span>{{ blog.readTime }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No Results Message -->
+            <div class="text-center py-5" *ngIf="filteredBlogs.length === 0">
+                <h4>No blogs found</h4>
+                <p class="text-muted">Try adjusting your filters or search
+                    terms.</p>
+                <button class="btn btn-primary"
+                    (click)="clearAllFilters()">Clear All Filters</button>
+            </div>
+        </div>
+    </section>
+
+</div>

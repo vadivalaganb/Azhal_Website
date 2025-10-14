@@ -1,38 +1,52 @@
  <!-- Navbar & Hero Start -->
-<div class="container-xxl position-relative p-0">
-<nav 
-  class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0" 
-  [ngClass]="{'sticky-top shadow-sm': isSticky}">
-  
-  <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="navbar-brand p-0">
-    <img src="assets/Azhal_Logo.png" alt="Logo">
-  </a>
+<div class="position-relative p-0">
+  <nav
+    class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0"
+    [ngClass]="{'sticky-top shadow-sm': isSticky}">
 
-  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-    <span class="fa fa-bars"></span>
-  </button>
+    <a routerLink routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact:true}" class="navbar-brand p-0">
+      <img src="assets/Azhal_Logo.png" alt="Logo">
+    </a>
 
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-    <div class="navbar-nav ms-auto py-0">
-      <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="nav-item nav-link">Home</a>
-      <a routerLink="about" routerLinkActive="active" class="nav-item nav-link">About</a>
-      <a routerLink="product" routerLinkActive="active" class="nav-item nav-link">Products</a>
-      <a routerLink="services" routerLinkActive="active" class="nav-item nav-link">Services</a>
-      <div class="nav-item dropdown">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="navbar-nav ms-auto py-0">
+        <a routerLink routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact:true}"
+          class="nav-item nav-link">Home</a>
+        <a routerLink="about" routerLinkActive="active"
+          class="nav-item nav-link">About</a>
+        <a routerLink="product" routerLinkActive="active"
+          class="nav-item nav-link">Products</a>
+        <a routerLink="services" routerLinkActive="active"
+          class="nav-item nav-link">Services</a>
+        <a routerLink="blogs" routerLinkActive="active"
+          class="nav-item nav-link">Blogs</a>
+        <!-- <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Blogs</a>
         <div class="dropdown-menu m-0">
           <a routerLink="features" class="dropdown-item">Features</a>
-          <!-- <a href="quote.html" class="dropdown-item">Free Quote</a> -->
+          <a href="quote.html" class="dropdown-item">Free Quote</a>
           <a routerLink="team" class="dropdown-item">Our Team</a>
-          <!-- <a routerLink="testimonial" class="dropdown-item">Testimonial</a> -->
+          <a routerLink="testimonial" class="dropdown-item">Testimonial</a>
         </div>
+      </div> -->
+        <!-- <a routerLink="register" routerLinkActive="active" class="nav-item nav-link">Register</a> -->
+        <a routerLink="contact" routerLinkActive="active"
+          class="nav-item nav-link">Contact</a>
       </div>
-      <!-- <a routerLink="register" routerLinkActive="active" class="nav-item nav-link">Register</a> -->
-      <a routerLink="contact" routerLinkActive="active" class="nav-item nav-link">Contact</a>
+      <a class="btn btn-auth-combo rounded-pill py-2 px-4 ms-lg-5">
+        <span class="auth-link signup-link" routerLink="signup">Sign Up</span>
+        <span class="auth-divider">/</span>
+        <span class="auth-link login-link" routerLink="login">Login</span>
+      </a>
     </div>
-    <a routerLink="signup" class="btn btn-light rounded-pill text-primary py-2 px-4 ms-lg-5">Sign Up</a>
-  </div>
-</nav>
+  </nav>
 
 </div>
 <!-- Navbar & Hero End -->

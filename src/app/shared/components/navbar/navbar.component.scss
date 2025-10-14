@@ -1,0 +1,52 @@
+.btn-auth-combo {
+    background: #fff;
+    border: 2px solid #f3f6f8;
+    color: #00b98e;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    .auth-link {
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    .auth-divider {
+        margin: 0 0.5rem;
+        color: #00b98e;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover {
+        background: #00b98e;
+        color: #fff;
+
+        .auth-link {
+            color: #fff;
+        }
+
+        .auth-divider {
+            transform: scale(1.2);
+            color: #fff;
+        }
+    }
+
+    /* Optional: animated underline on each link */
+    .auth-link::after {
+        content: '';
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #fff;
+        transition: width 0.3s ease;
+    }
+
+    .auth-link:hover::after {
+        width: 100%;
+    }
+}
