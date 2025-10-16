@@ -14,7 +14,9 @@ declare var WOW: any;
 export class ServicesComponent implements OnInit {
   serviceContents: any[] = [];
   loading = false;
-  testimonials: any[] = [];
+  teamMembers: any[] = [];
+  internTestimonials: any[] = [];
+  clientTestimonials: any[] = [];
   baseUrl = '';
 
   constructor(private apiService: ApiService) {
@@ -51,8 +53,10 @@ export class ServicesComponent implements OnInit {
   loadTestimonials(): void {
     this.apiService.getTestimonials().subscribe({
       next: (res) => {
-        this.testimonials = (res || [])
-          .filter(item => +item.status === 1)
+        const all = (res || []).filter(item => +item.status === 1);
+
+        this.internTestimonials = all
+          .filter(item => item.type === 'intern')
           .map(item => ({
             name: item.name,
             profession: item.profession,
@@ -62,26 +66,65 @@ export class ServicesComponent implements OnInit {
               : 'assets/default-profile.png'
           }));
 
+        this.clientTestimonials = all
+          .filter(item => item.type === 'client')
+          .map(item => ({
+            name: item.name,
+            profession: item.profession,
+            message: item.message,
+            image: item.image && item.image !== ''
+              ? this.baseUrl.replace(/\/+$/, '') + '/' + item.image.replace(/^\/+/, '')
+              : 'assets/default-profile.png'
+          }));
+
+        // Initialize carousels separately
         setTimeout(() => {
-          ($('.testimonial-carousel') as any).owlCarousel({
-            loop: true,
-            margin: 30,
-            autoplay: true,
-            autoplayTimeout: 4000,
-            items: 3,
-            center: true,
-            nav: true,
-            navText: ['<', '>'],
-            rewind: true,
-            responsive: {
-              0: { items: 1 },
-              768: { items: 2 },
-              992: { items: 3 }
-            }
-          });
-        }, 0);
+          // Intern Carousel
+          const internCount = $('.intern-carousel .item').length;
+          if (internCount) {
+            ($('.intern-carousel') as any).owlCarousel({
+              loop: internCount > 1,
+              margin: 30,
+              autoplay: true,
+              autoplayTimeout: 4000,
+              items: 1,
+              center: true,
+              nav: internCount > 1,
+              navText: ['<', '>'],
+              rewind: true,
+              responsive: {
+                0: { items: 1 },
+                768: { items: 1 },
+                992: { items: 1 }
+              }
+            });
+          }
+
+          // Client Carousel
+          const clientCount = $('.client-carousel .item').length;
+          if (clientCount) {
+            ($('.client-carousel') as any).owlCarousel({
+              loop: clientCount > 1,
+              margin: 30,
+              autoplay: true,
+              autoplayTimeout: 4000,
+              items: 1,
+              center: true,
+              nav: clientCount > 1,
+              navText: ['<', '>'],
+              rewind: true,
+              responsive: {
+                0: { items: 1 },
+                768: { items: 1 },
+                992: { items: 1 }
+              }
+            });
+          }
+        }, 500);
+
       },
       error: (err) => console.error(err)
     });
   }
+
 }

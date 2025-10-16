@@ -142,7 +142,7 @@
     </div>
     <!-- Client End -->
     <!-- Testimonial Start -->
-    <div class="py-4">
+    <div class="py-6">
         <div class="container">
             <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 600px;">
@@ -151,20 +151,67 @@
                 <h2 class="mb-5">What Our Clients Say!</h2>
             </div>
 
-            <!-- Owl Carousel -->
-            <div
-                class="owl-carousel owl-theme testimonial-carousel wow fadeInUp"
-                data-wow-delay="0.1s" *ngIf="testimonials.length">
-                <div class="item testimonial-item rounded p-4"
-                    *ngFor="let t of testimonials">
-                    <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                    <p>{{ t.message }}</p>
-                    <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                            [src]="t.image" [alt]="t.name">
-                        <div class="ps-3">
-                            <h6 class="mb-1">{{ t.name }}</h6>
-                            <small>{{ t.profession }}</small>
+            <!-- Tabs -->
+            <ul class="nav nav-tabs justify-content-center mb-4" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="intern-tab"
+                        data-bs-toggle="tab" data-bs-target="#intern"
+                        type="button" role="tab">
+                        Interns
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="client-tab"
+                        data-bs-toggle="tab" data-bs-target="#client"
+                        type="button" role="tab">
+                        Clients
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Interns -->
+                <div class="tab-pane fade show active" id="intern"
+                    role="tabpanel">
+                    <div class="owl-carousel intern-carousel"
+                        *ngIf="internTestimonials.length">
+                        <div class="item testimonial-item rounded p-4"
+                            *ngFor="let t of internTestimonials">
+                            <i
+                                class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>{{ t.message }}</p>
+                            <div class="d-flex align-items-center">
+                                <img
+                                    class="img-fluid flex-shrink-0 rounded-circle"
+                                    [src]="t.image" [alt]="t.name">
+                                <div class="ps-3">
+                                    <h6 class="mb-1">{{ t.name }}</h6>
+                                    <small>{{ t.profession }}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clients -->
+                <div class="tab-pane fade" id="client" role="tabpanel">
+                    <div class="owl-carousel client-carousel"
+                        *ngIf="clientTestimonials.length">
+                        <div class="item testimonial-item rounded p-4"
+                            *ngFor="let t of clientTestimonials">
+                            <i
+                                class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                            <p>{{ t.message }}</p>
+                            <div class="d-flex align-items-center">
+                                <img
+                                    class="img-fluid flex-shrink-0 rounded-circle"
+                                    [src]="t.image" [alt]="t.name">
+                                <div class="ps-3">
+                                    <h6 class="mb-1">{{ t.name }}</h6>
+                                    <small>{{ t.profession }}</small>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -172,6 +219,7 @@
         </div>
     </div>
     <!-- Testimonial End -->
+
     <!-- Tech Sack Start -->
     <div class="py-6" style="background: #00b98e;">
         <div class="container">
@@ -180,8 +228,10 @@
                 <!-- <div
                     class="d-inline-block border rounded-pill text-white px-4 mb-3">Our
                     Technology Stack</div> -->
-                <h2 class="mb-5 text-white">Building Future-Ready Digital Solutions</h2>
-                <p class="text-white">We harness the power of modern technologies and proven
+                <h2 class="mb-5 text-white">Building Future-Ready Digital
+                    Solutions</h2>
+                <p class="text-white">We harness the power of modern
+                    technologies and proven
                     frameworks to deliver scalable, secure, and high-performance
                     solutions. Our expertise spans web, mobile, and cloud
                     platforms—enabling seamless user experiences and robust
