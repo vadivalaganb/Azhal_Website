@@ -31,7 +31,8 @@
             <!-- Filter Section -->
             <div class="filter-section mb-4">
                 <!-- Filter Name -->
-                <div class="d-flex align-items-center justify-content-between bg-color">
+                <div
+                    class="d-flex align-items-center justify-content-between bg-color">
                     <div class="section-filter-title">
                         Filter
                     </div>
@@ -111,28 +112,32 @@
                 </div>
             </div>
 
-            <!-- Blog Grid -->
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6"
                     *ngFor="let blog of filteredBlogs">
-                    <div class="blog-card"
-                        [attr.data-category]="blog.categorySlug || createSlug(blog.category)">
-                        <div class="badge">{{ blog.category }}</div>
-                        <img [src]="blog.image" [alt]="blog.title"
-                            class="blog-image">
-                        <div class="blog-content">
-                            <h3 class="blog-title">{{ blog.title }}</h3>
-                            <p class="blog-summary">{{ blog.summary }}</p>
-                            <div class="blog-meta">
-                                <span>{{ blog.author }} • {{ blog.date }}</span>
-                                <span>{{ blog.readTime }}</span>
+                    <a [routerLink]="['/blogs', blog.slug]"
+                        class="text-decoration-none">
+                        <div class="blog-card"
+                            [attr.data-category]="blog.category_slug || createSlug(blog.category_name)">
+                            <div class="badge">{{ blog.category_name }}</div>
+                            <img [src]="api.getBaseUrl() + '/' + blog.file_path"
+                                [alt]="blog.header_name" class="blog-image">
+                            <div class="blog-content">
+                                <h3 class="blog-title">{{ blog.header_name
+                                    }}</h3>
+                                <p class="blog-summary">{{
+                                    blog.short_description }}</p>
+                                <div class="blog-meta">
+                                    <span>{{ blog.created_at | date:'mediumDate'
+                                        }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
+
             </div>
 
-            <!-- No Results Message -->
             <div class="text-center py-5" *ngIf="filteredBlogs.length === 0">
                 <h4>No blogs found</h4>
                 <p class="text-muted">Try adjusting your filters or search
@@ -140,6 +145,7 @@
                 <button class="btn btn-primary"
                     (click)="clearAllFilters()">Clear All Filters</button>
             </div>
+
         </div>
     </section>
 

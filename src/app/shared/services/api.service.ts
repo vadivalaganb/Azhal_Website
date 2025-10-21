@@ -58,4 +58,8 @@ export class ApiService {
   getTestimonials(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/testimonial.php?action=read`);
   }
+  getAllBlogs(): Observable<any> {
+    return this.get('blogs.php');
+  }
+
 }

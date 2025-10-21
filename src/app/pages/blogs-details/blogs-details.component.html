@@ -1,0 +1,30 @@
+ <div class="bg-white p-0">
+    <div class="bg-primary page-header">
+        <div class="container text-center">
+            <h1 class="text-white animated zoomIn mb-3">Blog Details</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink>Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink="/blogs">Blogs</a></li>
+                    <li class="breadcrumb-item text-white active"
+                        aria-current="page" routerLink="/about">About</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container py-5 display-data" *ngIf="blog">
+        <h1>{{ blog.header_name }}</h1>
+        <p class="text-muted">{{ blog.category_name }} • {{ blog.created_at |
+            date:'mediumDate' }}</p>
+        <img [src]="api.getBaseUrl() + '/' + blog.file_path"
+            class="img-fluid my-4" *ngIf="blog.file_path">
+       <div class="blog-content" [innerHTML]="blog.description"></div>
+    </div>
+
+    <div class="text-center py-5" *ngIf="!blog">
+        <h4>Blog not found</h4>
+    </div>
+</div>

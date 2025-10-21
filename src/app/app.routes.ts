@@ -9,6 +9,7 @@ import { StudentregistrationComponent } from './pages/studentregistration/studen
 import { SignupComponent } from './pages/signup/signup.component';
 import { UnderConstructionComponent } from './shared/app-under-construction';
 import { BlogsComponent } from './pages/blogs/blogs.component';
+import { BlogDetailsComponent } from './pages/blogs-details/blogs-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'student_registration', component: StudentregistrationComponent },
   { path: 'blogs', component: BlogsComponent },
+  { path: 'blogs/:slug', component: BlogDetailsComponent },
   { path: 'under-construction', component: UnderConstructionComponent }
 
 ];
