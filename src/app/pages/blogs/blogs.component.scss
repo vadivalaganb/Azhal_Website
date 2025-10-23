@@ -22,7 +22,11 @@
 
         .filter-dropdown-container {
             position: relative;
-            display: inline-block;
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            // position: relative;
+            // display: inline-block;
         }
 
         .filter-dropdown-btn {
@@ -73,7 +77,8 @@
         .filter-dropdown-menu {
             position: absolute;
             top: calc(100% + 8px);
-            left: 0;
+            // left: 0;
+            right: 0;
             min-width: 320px;
             max-width: 400px;
             background: #fff;
@@ -266,6 +271,8 @@
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 10px;
 
             .filter-chip {
                 display: inline-flex;
@@ -353,11 +360,12 @@
         }
     }
 
-    .bg-color {
-        border: 1px solid #e9ecef;
-        padding: 10px;
-        border-radius: 8px;
-    }
+    // .bg-color {
+    //     border: 1px solid #e9ecef;
+    //     padding: 10px;
+    //     border-radius: 8px;
+    //     background: #f7f7f729;
+    // }
 
     // Mobile Responsive
     @media (max-width: 768px) {
@@ -379,4 +387,77 @@
             }
         }
     }
+}
+
+.section-filter-title {
+    width: 60%;
+}
+
+// .input-group-text {
+//     display: flex
+// ;
+//     align-items: center;
+//     padding: 0.375rem 0.75rem;
+//     font-size: 1rem;
+//     font-weight: 400;
+//     line-height: 1.5;
+//     color: #fff;
+//     text-align: center;
+//     white-space: nowrap;
+//     background-color: #009472;
+//     border: 1px solid #ced4da;
+//     border-radius: 5px;
+// }
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 0;
+    gap: 16px;
+}
+
+.filter-bar-left,
+.filter-bar-right {
+    flex: 0 0 auto;
+}
+
+.filter-bar-center {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: center;
+    gap: 28px;
+}
+
+.popular-dropdown,
+.filters-btn {
+    padding: 8px 22px;
+    font-size: 16px;
+    border: 1.5px solid #ececec;
+    border-radius: 12px;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: box-shadow 0.15s;
+}
+
+.popular-dropdown .arrow {
+    margin-left: 8px;
+}
+
+.category-pill {
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: #17181B;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0 8px;
+    transition: color 0.3s;
+}
+
+.category-pill.active,
+.category-pill:hover {
+    color: #007bff; // or your accent color
 }

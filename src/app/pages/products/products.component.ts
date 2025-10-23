@@ -17,6 +17,7 @@ export class ProductsComponent {
   internTestimonials: any[] = [];
   clientTestimonials: any[] = [];
   baseUrl = '';
+  showFullText = false;
   constructor(private apiService: ApiService) {
     this.baseUrl = this.apiService.getBaseUrl();
   }
@@ -37,11 +38,16 @@ export class ProductsComponent {
   }
 
   loadProducts(): void {
-    this.apiService.getProducts().subscribe((data) => {
-      this.products = data;
-      console.log(this.products); // check the structure from backend
+    this.apiService.getProducts().subscribe((data: any[]) => {
+      // Add showFullText property for each product
+      this.products = data.map(product => ({
+        ...product,
+        showFullText: false
+      }));
+      console.log(this.products); // Check structure
     });
   }
+
   loadTestimonials(): void {
     this.apiService.getTestimonials().subscribe({
       next: (res) => {
@@ -118,5 +124,7 @@ export class ProductsComponent {
       error: (err) => console.error(err)
     });
   }
-
+  toggleText(index: number): void {
+    this.products[index].showFullText = !this.products[index].showFullText;
+  }
 }

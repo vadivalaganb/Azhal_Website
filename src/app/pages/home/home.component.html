@@ -17,6 +17,7 @@
                         *ngIf="homeContent.file_path"
                         [src]="baseUrl + '/' + homeContent.file_path"
                         alt="Image" />
+
                 </div>
             </div>
         </div>
@@ -28,10 +29,11 @@
                 <div class="row g-5">
                     <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
                         <h2 class="mb-4">{{ section.header_name }}</h2>
-                        <p class="description-text">{{ section.description
+                        <p class="description-text myclass"  [class.show]="show">{{ section.description
                             }}</p>
-                        <!-- <a class="btn btn-primary rounded-pill py-3 px-5 mt-2"
-                            href>Read More</a> -->
+                        
+                        <a class="btn btn-primary rounded-pill py-3 px-5 mt-2"
+                            (click)="show = !show">{{ show ? 'Show less': 'Show More' }}</a> 
                     </div>
                     <div class="col-lg-7" *ngIf="itemsMap[section.id]">
                         <div class="row g-5">
@@ -94,7 +96,7 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp"
-                    *ngFor="let item of serviceContents"
+                    *ngFor="let item of serviceContents; let i = index"
                     [attr.data-wow-delay]="'0.1s'">
                     <div class="service-item rounded h-100">
                         <div class="d-flex justify-content-between">
@@ -106,8 +108,21 @@
                             </a> -->
                         </div>
                         <div class="p-5">
+
                             <h5 class="mb-3">{{ item.header_name }}</h5>
-                            <span>{{ item.description }}</span>
+                            <span>
+                                {{ item.showFullText ? item.description :
+                                (item.description | slice:0:100) }}
+                                <span
+                                    *ngIf="!item.showFullText && item.description.length > 100">...</span>
+                            </span>
+
+                            <button *ngIf="item.description.length > 100"
+                                (click)="toggleServiceText(i)"
+                                class="btn btn-link p-0">
+                                {{ item.showFullText ? 'Read Less' :
+                                'Read More' }}
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -148,7 +163,7 @@
                 style="max-width: 600px;">
                 <div
                     class="d-inline-block border rounded-pill text-primary px-4 mb-3">Testimonial</div>
-                <h2 class="mb-5">What Our Clients Say!</h2>
+                <h2 class="mb-5">Voices of Experience</h2>
             </div>
 
             <!-- Tabs -->
@@ -157,14 +172,14 @@
                     <button class="nav-link active" id="intern-tab"
                         data-bs-toggle="tab" data-bs-target="#intern"
                         type="button" role="tab">
-                        Interns
+                        Rising Stars
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="client-tab"
                         data-bs-toggle="tab" data-bs-target="#client"
                         type="button" role="tab">
-                        Clients
+                        Happy Clients
                     </button>
                 </li>
             </ul>
@@ -262,7 +277,7 @@
                     *ngFor="let member of teamMembers; let i = index"
                     [attr.data-wow-delay]="0.1 * i + 's'">
                     <div class="team-item text-center">
-                        <h5>{{ member.name }}</h5>
+                        <h5  class="member-name">{{ member.name }}</h5>
                         <p class="mb-4">{{ member.designation }}</p>
                         <img class="img-fluid rounded-circle w-100 mb-4"
                             [src]="member.profile_image ? baseUrl + '/' + member.profile_image : 'assets/team-1.jpg'"

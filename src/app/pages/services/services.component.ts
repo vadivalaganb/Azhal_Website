@@ -18,7 +18,7 @@ export class ServicesComponent implements OnInit {
   internTestimonials: any[] = [];
   clientTestimonials: any[] = [];
   baseUrl = '';
-
+  showFullText = false;
   constructor(private apiService: ApiService) {
     this.baseUrl = this.apiService.getBaseUrl();
   }
@@ -40,8 +40,12 @@ export class ServicesComponent implements OnInit {
   loadServices(): void {
     this.loading = true;
     this.apiService.getServiceContents().subscribe({
-      next: (res) => {
-        this.serviceContents = res || [];
+      next: (res: any[]) => {
+        // Add showFullText property for each service
+        this.serviceContents = (res || []).map(service => ({
+          ...service,
+          showFullText: false
+        }));
         this.loading = false;
       },
       error: (err) => {
@@ -125,6 +129,9 @@ export class ServicesComponent implements OnInit {
       },
       error: (err) => console.error(err)
     });
+  }
+  toggleServiceText(index: number): void {
+    this.serviceContents[index].showFullText = !this.serviceContents[index].showFullText;
   }
 
 }

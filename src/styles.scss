@@ -455,3 +455,18 @@ $dark: #0E2E50;
 img.img-fluid.flex-shrink-0.rounded-circle {
   width: 50px;
 }
+
+.myclass {
+  height: 64vh;
+  overflow: hidden;
+  white-space: pre-line;
+}
+
+.show {
+  overflow: visible;
+  height: auto;
+}
+
+.member-name {
+  padding-top: 30px;
+}

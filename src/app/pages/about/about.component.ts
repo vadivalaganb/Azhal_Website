@@ -16,6 +16,7 @@ export class AboutComponent implements AfterViewInit {
   teamMembers: any[] = [];
   itemsMap: { [sectionId: string]: any[] } = {}; // Map items by section
   baseUrl = '';
+  show: boolean = false;
 
   constructor(public apiService: ApiService) {
     this.baseUrl = this.apiService.getBaseUrl();

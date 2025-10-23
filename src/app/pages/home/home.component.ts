@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   teamMembers: any[] = [];
   internTestimonials: any[] = [];
   clientTestimonials: any[] = [];
-
+  show: boolean = false;
   constructor(private api: ApiService) {
     this.baseUrl = this.api.getBaseUrl();
   }
@@ -81,9 +81,14 @@ export class HomeComponent implements OnInit {
     });
   }
   loadServiceSection(): void {
+    this.loading = true;
     this.api.getServiceContents().subscribe({
-      next: (res) => {
-        this.serviceContents = res || [];
+      next: (res: any[]) => {
+        // Add showFullText property for each service
+        this.serviceContents = (res || []).map(service => ({
+          ...service,
+          showFullText: false
+        }));
         this.loading = false;
       },
       error: (err) => {
@@ -178,5 +183,7 @@ export class HomeComponent implements OnInit {
       error: (err) => console.error(err)
     });
   }
-
+  toggleServiceText(index: number): void {
+    this.serviceContents[index].showFullText = !this.serviceContents[index].showFullText;
+  }
 }

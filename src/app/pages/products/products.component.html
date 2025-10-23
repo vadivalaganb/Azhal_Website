@@ -35,22 +35,34 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp"
-                    data-wow-delay="0.1s" *ngFor="let product of products">
+                    data-wow-delay="0.1s" *ngFor="let product of products; let i = index">
                     <div class="service-item rounded h-100">
                         <div class="d-flex justify-content-between">
                             <div class="service-icon">
                                 <i class="{{ product.icon }}"></i>
                             </div>
-                            <a class="service-btn" href="#">
-                                <i class="fa fa-link fa-2x"></i>
-                            </a>
                         </div>
+
                         <div class="p-5">
                             <h5 class="mb-3">{{ product.header_name }}</h5>
-                            <span>{{ product.description }}</span>
+
+                            <span>
+                                {{ product.showFullText ? product.description :
+                                (product.description | slice:0:100) }}
+                                <span
+                                    *ngIf="!product.showFullText && product.description.length > 100">...</span>
+                            </span>
+
+                            <button *ngIf="product.description.length > 100"
+                                (click)="toggleText(i)"
+                                class="btn btn-link p-0">
+                                {{ product.showFullText ? 'Read Less' :
+                                'Read More' }}
+                            </button>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -63,7 +75,7 @@
                 style="max-width: 600px;">
                 <div
                     class="d-inline-block border rounded-pill text-primary px-4 mb-3">Testimonial</div>
-                <h2 class="mb-5">What Our Clients Say!</h2>
+                <h2 class="mb-5">Voices of Experience</h2>
             </div>
 
             <!-- Tabs -->
@@ -72,14 +84,14 @@
                     <button class="nav-link active" id="intern-tab"
                         data-bs-toggle="tab" data-bs-target="#intern"
                         type="button" role="tab">
-                        Interns
+                        Rising Stars
                     </button>
                 </li>
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="client-tab"
                         data-bs-toggle="tab" data-bs-target="#client"
                         type="button" role="tab">
-                        Clients
+                        Happy Clients
                     </button>
                 </li>
             </ul>

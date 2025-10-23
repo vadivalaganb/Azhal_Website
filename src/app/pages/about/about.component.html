@@ -30,31 +30,35 @@
                             class="d-inline-block border rounded-pill text-primary px-4 mb-3">About
                             Us</div>
                         <h2 class="mb-4">{{ section.header_name }}</h2>
-                        <p class="mb-4">{{ section.description }}</p>
-                        <div class="row g-3 mb-4" *ngIf="itemsMap[section.id]">
-                            <div class="col-12 d-flex"
-                                *ngFor="let item of itemsMap[section.id]">
-                                <div
-                                    class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
-                                    <i [class]="item.icon"></i>
-                                </div>
-                                <div class="ms-4">
-                                    <h6>{{ item.subtitle }}</h6>
-                                    <span>{{ item.description }}</span>
-                                </div>
-                            </div>
-                        </div>
-
+                        <p class="mb-4 myaboutclass"  [class.show]="show">{{
+                            section.description }}</p>
                         <a class="btn btn-primary rounded-pill py-3 px-5 mt-2"
-                            href>Read More</a>
+                            (click)="show = !show">{{ show ? 'Show less': 'Show More' }}</a>
                     </div>
                 </div>
+
+                <!-- About Extend Start -->
+                <div class="row g-3 mt-5" *ngIf="itemsMap[section.id]">
+                    <div class="col-4 d-flex"
+                        *ngFor="let item of itemsMap[section.id]">
+                        <div
+                            class="flex-shrink-0 btn-lg-square rounded-circle bg-primary">
+                            <i [class]="item.icon"></i>
+                        </div>
+                        <div class="ms-4">
+                            <h6>{{ item.subtitle }}</h6>
+                            <span>{{ item.description }}</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- About Extend End -->
+
             </div>
         </div>
         <!-- About End -->
 
         <!-- Features Start -->
-        <div class="py-6" *ngIf="section.id == 2">
+        <!-- <div class="py-6" *ngIf="section.id == 2">
             <div class="container">
                 <div class="row g-5">
                     <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -84,13 +88,12 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div> -->
         <!-- Features End -->
     </div>
 
     <!-- Team Start -->
-    <div class="py-6">
+    <div class="py-4">
         <div class="container">
             <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 600px;">
@@ -104,7 +107,7 @@
                     *ngFor="let member of teamMembers; let i= index"
                     data-wow-delay="0.1s">
                     <div class="team-item">
-                        <h5>{{member.name}}</h5>
+                        <h5 class="member-name">{{member.name}}</h5>
                         <p class="mb-4">{{member.designation}}</p>
                         <img class="img-fluid rounded-circle w-100 mb-4"
                             [src]="member.profile_image ? apiService.getBaseUrl() + '/' +  member.profile_image: 'assets/team-1.jpg'"
