@@ -20,6 +20,7 @@ export class FooterComponent {
   subscribe() {
     if (!this.email) {
       this.message = 'Please enter your email!';
+      setTimeout(() => this.message = '', 1000);
       return;
     }
 

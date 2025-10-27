@@ -193,6 +193,7 @@ export class HomeComponent implements OnInit {
   subscribe() {
     if (!this.email) {
       this.message = 'Please enter your email!';
+      setTimeout(() => this.message = '', 1000);
       return;
     }
 
