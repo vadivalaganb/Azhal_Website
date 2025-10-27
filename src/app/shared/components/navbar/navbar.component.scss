@@ -1,11 +1,21 @@
+/* -------------------------
+   Auth Combo Button Section
+--------------------------*/
 .btn-auth-combo {
     background: #fff;
-    border: 2px solid #f3f6f8;
+    border: 2px solid #00b98e;
     color: #00b98e;
-    font-weight: 500;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border-radius: 6px;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 8px rgba(0, 185, 142, 0.08);
 
     .auth-link {
         position: relative;
@@ -17,30 +27,57 @@
     .auth-divider {
         margin: 0 0.5rem;
         color: #00b98e;
-        transition: transform 0.3s ease;
+        font-weight: 400;
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    /* Gradient Sweep Animation */
+    &::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, #00b98e 0%, #00d9a6 100%);
+        transform: translateX(-100%);
+        transition: transform 0.5s ease;
+        z-index: 1;
+    }
+
+    &:hover::before {
+        transform: translateX(0);
     }
 
     &:hover {
-        background: #00b98e;
         color: #fff;
-
-        .auth-link {
-            color: #fff;
-        }
-
-        .auth-divider {
-            transform: scale(1.2);
-            color: #fff;
-        }
+        border-color: #00b98e;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(0, 185, 142, 0.2);
     }
 
-    /* Optional: animated underline on each link */
+    &:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+
+    &:hover .auth-link,
+    &:hover .auth-divider {
+        color: #fff;
+    }
+
+    .auth-divider {
+        transition: transform 0.3s ease;
+    }
+
+    &:hover .auth-divider {
+        transform: scale(1.3);
+    }
+
+    /* Animated underline for links */
     .auth-link::after {
-        content: '';
+        content: "";
         position: absolute;
         width: 0%;
         height: 2px;
-        bottom: 0;
+        bottom: -3px;
         left: 0;
         background-color: #fff;
         transition: width 0.3s ease;
@@ -48,5 +85,190 @@
 
     .auth-link:hover::after {
         width: 100%;
+    }
+}
+
+/* -------------------------
+   Common Buttons (Login / Signup)
+--------------------------*/
+.common-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 16px;
+    border: 2px solid #f3f6f8;
+    border-radius: 6px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+/* Subtle background slide effect */
+.common-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 185, 142, 0.1);
+    transition: all 0.4s ease;
+    z-index: 0;
+}
+
+.common-btn:hover::before {
+    left: 0;
+}
+
+/* Hover lift + shadow */
+.common-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 15px rgba(0, 185, 142, 0.25);
+}
+
+/* Active state */
+.common-btn:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow: none;
+}
+
+/* Signup Button */
+.signup-btn {
+    background: #fff;
+    color: #00b98e;
+    border-color: #00b98e;
+    margin-left: 100px;
+
+    &:hover {
+        background: linear-gradient(120deg, #00b98e, #00d9a6);
+        color: #fff;
+    }
+}
+
+/* Login Button */
+.login-btn {
+    background: #00b98e;
+    color: #fff;
+    border-color: #00b98e;
+    margin: 0 10px;
+
+    &:hover {
+        background: linear-gradient(120deg, #00a47b, #00c193);
+        box-shadow: 0 0 15px rgba(0, 185, 142, 0.6);
+        animation: glowPulse 1.5s infinite;
+    }
+}
+
+/* -------------------------
+   Navbar Buttons
+--------------------------*/
+.nav-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 22px;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    border: none;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin-left: 10px;
+    z-index: 1;
+}
+
+/* Gradient Sign Up Button */
+.signup-btn {
+    background: linear-gradient(135deg, #00b98e, #00d9a6);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 185, 142, 0.3);
+}
+
+.signup-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 185, 142, 0.5);
+    background: linear-gradient(135deg, #00d9a6, #00b98e);
+}
+
+/* Soft Glow Login Button */
+.login-btn {
+    background: #fff;
+    color: #00b98e;
+    border: 2px solid #00b98e;
+    box-shadow: 0 4px 10px rgba(0, 185, 142, 0.2);
+}
+
+.login-btn:hover {
+    background: #00b98e;
+    color: #fff;
+    box-shadow: 0 8px 20px rgba(0, 185, 142, 0.5);
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* Optional glowing pulse for login hover */
+.login-btn:hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    box-shadow: 0 0 15px rgba(0, 185, 142, 0.5);
+    opacity: 0.6;
+    animation: pulseGlow 1.5s infinite;
+    z-index: 0;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0 rgba(0, 185, 142, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 15px rgba(0, 185, 142, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(0, 185, 142, 0.4);
+    }
+}
+
+/* Responsive tweaks */
+@media (max-width: 992px) {
+    .nav-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Soft glowing pulse animation */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 0 rgba(0, 185, 142, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 12px rgba(0, 185, 142, 0.8);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(0, 185, 142, 0.4);
+    }
+}
+
+@media (max-width: 768px) {
+    .signup-btn {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 992px) {
+    .signup-btn {
+        margin-left: 0;
     }
 }

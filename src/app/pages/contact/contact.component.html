@@ -79,49 +79,66 @@
                         <div *ngIf="errorMsg" class="alert alert-danger mt-3">{{
                             errorMsg }}</div>
                     </form>
-
-                    <!-- <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control"
-                                        id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control"
-                                        id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control"
-                                        id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control"
-                                        placeholder="Leave a message here"
-                                        id="message"
-                                        style="height: 150px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3"
-                                    type="submit">Send Message</button>
-                            </div>
-                        </div>
-                    </form> -->
                 </div>
             </div>
         </div>
     </div>
     <!-- Contact End -->
+
+    <!-- Office Locations & Map Start -->
+    <div class="mt-5 py-6 wow fadeIn" data-wow-delay="0.2s">
+        <div class="container text-center mb-5 wow fadeInDown"
+            data-wow-delay="0.3s">
+            <div
+                class="d-inline-block border rounded-pill text-primary px-4 mb-3 animate__animated animate__fadeInDown">
+                Our Locations
+            </div>
+            <h2
+                class="mb-3 animate__animated animate__zoomIn animate__delay-1s">
+                Find Us Across Tamil Nadu
+            </h2>
+            <p class="text-muted mb-5 wow fadeInUp" data-wow-delay="0.4s">
+                Visit us at our offices across Tamil Nadu. Whether you prefer to
+                meet in person or connect virtually,
+                our teams are ready to collaborate with you. Find our nearest
+                location below and get directions easily via Google Maps.
+            </p>
+        </div>
+
+        <!-- Google Map -->
+        <div class="container-fluid p-0 wow fadeInUp" data-wow-delay="0.5s">
+            <div style="width: 100%">
+                <iframe
+                    width="100%"
+                    height="600"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Thiruvannamalai+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Office Locations List -->
+        <div class="container mt-5">
+            <div class="row text-center g-4">
+                <div class="col-md-4 wow fadeInLeft" data-wow-delay="0.2s">
+                    <h5 class="fw-bold text-primary mb-2">Chennai Office</h5>
+                    <p>No. 15, OMR Road, Chennai, Tamil Nadu 600096</p>
+                </div>
+                <div class="col-md-4 wow zoomIn" data-wow-delay="0.4s">
+                    <h5 class="fw-bold text-primary mb-2">Coimbatore Office</h5>
+                    <p>Tech Park, Avinashi Road, Coimbatore, Tamil Nadu
+                        641014</p>
+                </div>
+                <div class="col-md-4 wow fadeInRight" data-wow-delay="0.6s">
+                    <h5 class="fw-bold text-primary mb-2">Madurai Office</h5>
+                    <p>IT Corridor, Anna Nagar, Madurai, Tamil Nadu 625020</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Office Locations & Map End -->
 
 </div>

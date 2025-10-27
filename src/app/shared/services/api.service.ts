@@ -55,6 +55,9 @@ export class ApiService {
   getProducts(): Observable<any[]> {
     return this.get<any[]>('product_content.php');
   }
+  getProductById(id: number | string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/product_content.php?id=${id}`);
+  }
   getTestimonials(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/testimonial.php?action=read`);
   }

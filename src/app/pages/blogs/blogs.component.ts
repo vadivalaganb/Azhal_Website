@@ -101,7 +101,7 @@ export class BlogsComponent implements OnInit {
     } else {
       this.selectedFilters = this.selectedFilters.filter(f => f !== value);
     }
-    this.applyFilters();
+    // this.applyFilters();
   }
 
   applyFilters() {

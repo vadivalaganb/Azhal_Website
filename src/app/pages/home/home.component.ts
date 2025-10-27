@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../shared/services/api.service';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 declare var $: any;
 declare var WOW: any;
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
@@ -23,6 +24,9 @@ export class HomeComponent implements OnInit {
   internTestimonials: any[] = [];
   clientTestimonials: any[] = [];
   show: boolean = false;
+  email: string = '';
+  message: string = '';
+
   constructor(private api: ApiService) {
     this.baseUrl = this.api.getBaseUrl();
   }
@@ -186,4 +190,24 @@ export class HomeComponent implements OnInit {
   toggleServiceText(index: number): void {
     this.serviceContents[index].showFullText = !this.serviceContents[index].showFullText;
   }
+  subscribe() {
+    if (!this.email) {
+      this.message = 'Please enter your email!';
+      return;
+    }
+
+    this.api.post('subscribe.php', { email: this.email }).subscribe({
+      next: (res: any) => {
+        this.message = res.message || 'Subscribed successfully!';
+        this.email = '';
+        setTimeout(() => this.message = '', 1000);
+      },
+      error: (err) => {
+        console.error(err);
+        this.message = 'Subscription failed. Try again.';
+        setTimeout(() => this.message = '', 1000);
+      }
+    });
+  }
+
 }

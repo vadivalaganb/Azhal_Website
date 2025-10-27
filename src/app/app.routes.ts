@@ -10,12 +10,18 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { UnderConstructionComponent } from './shared/app-under-construction';
 import { BlogsComponent } from './pages/blogs/blogs.component';
 import { BlogDetailsComponent } from './pages/blogs-details/blogs-details.component';
+import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'product', component: ProductsComponent },
+  {
+    path:'product-details/:id',
+    loadComponent: () => import('./pages/product-details/product-details.component')
+    .then(m => m.ProductDetailsComponent)
+  },
   { path: 'services', component: ServicesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },

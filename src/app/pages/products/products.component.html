@@ -35,7 +35,9 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6 wow fadeInUp"
-                    data-wow-delay="0.1s" *ngFor="let product of products; let i = index">
+                    data-wow-delay="0.1s" style="cursor: pointer;"
+                    *ngFor="let product of products; let i = index"
+                    [routerLink]="['/product-details', product.id]">
                     <div class="service-item rounded h-100">
                         <div class="d-flex justify-content-between">
                             <div class="service-icon">
