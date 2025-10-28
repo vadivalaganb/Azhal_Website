@@ -50,12 +50,12 @@
 
                             <span>
                                 {{ product.showFullText ? product.description :
-                                (product.description | slice:0:100) }}
+                                (product.description | slice:0:150) }}
                                 <span
-                                    *ngIf="!product.showFullText && product.description.length > 100">...</span>
+                                    *ngIf="!product.showFullText && product.description.length > 150">...</span>
                             </span>
 
-                            <button *ngIf="product.description.length > 100"
+                            <button *ngIf="product.description.length > 150"
                                 (click)="toggleText(i)"
                                 class="btn btn-link p-0">
                                 {{ product.showFullText ? 'Read Less' :

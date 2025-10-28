@@ -50,12 +50,12 @@
                             <h5 class="mb-3">{{ item.header_name }}</h5>
                             <span>
                                 {{ item.showFullText ? item.description :
-                                (item.description | slice:0:100) }}
+                                (item.description | slice:0:150) }}
                                 <span
-                                    *ngIf="!item.showFullText && item.description.length > 100">...</span>
+                                    *ngIf="!item.showFullText && item.description.length > 150">...</span>
                             </span>
 
-                            <button *ngIf="item.description.length > 100"
+                            <button *ngIf="item.description.length > 150"
                                 (click)="toggleServiceText(i)"
                                 class="btn btn-link p-0">
                                 {{ item.showFullText ? 'Read Less' :
