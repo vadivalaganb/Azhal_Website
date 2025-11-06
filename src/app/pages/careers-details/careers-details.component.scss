@@ -1,0 +1,15 @@
+.display-data {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+iframe {
+    margin: 20px;
+
+    .FishBowlPanel {
+        background-color: #fff !important;
+    }
+}

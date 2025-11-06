@@ -1,0 +1,104 @@
+ <div class="bg-white p-0">
+    <div class="bg-primary page-header">
+        <div class="container text-center">
+            <h1 class="text-white animated zoomIn mb-3">Careers</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink="/">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink="/contact">Contact</a></li>
+                    <li class="breadcrumb-item text-white active"
+                        aria-current="page">Careers</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <section class="container my-2 py-2">
+
+        <!-- <h2 class="text-center fw-bold mb-3">Join Our Team</h2>
+        <p class="text-center text-muted mb-5">
+            We're always looking for talented individuals to help us
+            build the future. Explore our open positions and find your
+            next opportunity.
+        </p> -->
+
+        <!-- Job Listings -->
+        <!-- <div *ngFor="let job of jobs"
+            class="card mb-4 shadow-sm border-0 rounded-3">
+            <div
+                class="card-body d-flex justify-content-between align-items-center flex-wrap">
+                <div>
+                    <h5 class="fw-semibold">{{ job.title }}</h5>
+                    <small class="text-muted d-block mb-2">{{
+                        job.department }}</small>
+                    <p class="mb-2">{{ job.description }}</p>
+                    <div class="text-muted small">
+                        <i class="bi bi-geo-alt me-2"></i>{{ job.type }}
+                        |
+                        <i class="bi bi-clock ms-2 me-2"></i>{{
+                        job.duration }} |
+                        <i class="bi bi-diagram-3 ms-2"></i>{{
+                        job.category }}
+                    </div>
+                </div>
+                <button class="btn btn-success mt-3 mt-sm-0">Apply
+                    Now</button>
+            </div>
+        </div> -->
+
+        <h3 class="text-center fw-bold mt-5 mb-3">
+            Professional Development Courses
+        </h3>
+        <p class="text-center text-muted mb-5">
+            Enhance your skills with our curated selection of professional
+            courses designed to help you grow in your career.
+        </p>
+
+        <!-- Loading / Error -->
+        <div *ngIf="loading" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+        </div>
+        <div *ngIf="error" class="alert alert-danger text-center">{{ error
+            }}</div>
+
+        <!-- Course Cards -->
+        <div *ngFor="let course of courses"
+            class="card mb-4 shadow-sm border-0 rounded-3">
+            <div
+                class="card-body d-flex justify-content-between align-items-center flex-wrap">
+                <div>
+                    <h5 class="fw-semibold">{{ course.header_name }}</h5>
+                    <p class="mb-1 text-muted">Instructor: {{
+                        course.course_instructor }}</p>
+                    <p class="mb-2">{{ course.short_description }}</p>
+                    <div class="text-muted small">
+                        <i class="bi bi-calendar me-2"></i>&nbsp;{{
+                        course.course_duration }} |
+                        <i class="bi bi-bar-chart ms-2 me-2"></i>&nbsp;{{
+                        course.course_level }}
+                         <i class="bi bi-person ms-2"></i>&nbsp;{{
+                         course.course_instructor }}
+                    </div>
+                </div>
+                <button class="btn btn-outline-dark mt-3 mt-sm-0"
+                    [routerLink]="['/careers-details', course.id]">
+                    Start Learning
+                </button>
+            </div>
+        </div>
+
+        <!-- Submit Resume Section -->
+        <!-- <div
+            class="card bg-light text-center p-4 mt-5 border-0 rounded-3">
+            <h5 class="fw-semibold mb-2">Don't see a perfect fit?</h5>
+            <p class="text-muted mb-3">
+                We're always interested in meeting talented people. Send
+                us your resume and we’ll keep you in mind for future
+                opportunities.
+            </p>
+            <button class="btn btn-success">Submit Your Resume</button>
+        </div> -->
+    </section>
+</div>

@@ -1,0 +1,43 @@
+ <div class="bg-white p-0">
+    <div class="bg-primary page-header">
+        <div class="container text-center">
+            <h1 class="text-white animated zoomIn mb-3">Course Details</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center">
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink>Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white"
+                            routerLink="/blogs">Blogs</a></li>
+                    <li class="breadcrumb-item text-white active"
+                        aria-current="page" routerLink="/careers">Careers</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container py-5 display-data" *ngIf="Course">
+        <h1>{{ Course.header_name }}</h1>
+        <p class="text-muted">{{ Course.created_at | date:'mediumDate' }}</p>
+        <div class="Course-content blog-content" [innerHTML]="Course.description"></div>
+
+        <!-- Embed PPT dynamically -->
+        <iframe
+            *ngIf="pptUrl"
+            [src]="pptUrl"
+            width="100%"
+            height="500px"
+            frameborder="0">
+        </iframe>
+
+        <!-- Download link -->
+        <!-- <a *ngIf="Course.file_path" class="btn btn-sm btn-primary mt-2"
+            [href]="'https://azhalitsolutions.com/api/' + Course.file_path"
+            target="_blank">
+            <i class="bi bi-download"></i> Download File
+        </a> -->
+    </div>
+
+    <div class="text-center py-5" *ngIf="!Course">
+        <h4>Course not found</h4>
+    </div>
+</div>

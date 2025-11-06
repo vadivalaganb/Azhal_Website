@@ -10,7 +10,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { UnderConstructionComponent } from './shared/app-under-construction';
 import { BlogsComponent } from './pages/blogs/blogs.component';
 import { BlogDetailsComponent } from './pages/blogs-details/blogs-details.component';
-import { ProductDetailsComponent } from './pages/product-details/product-details.component';
+import { CareersComponent } from './pages/careers/careers.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,9 +18,9 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'product', component: ProductsComponent },
   {
-    path:'product-details/:id',
+    path: 'product-details/:id',
     loadComponent: () => import('./pages/product-details/product-details.component')
-    .then(m => m.ProductDetailsComponent)
+      .then(m => m.ProductDetailsComponent)
   },
   { path: 'services', component: ServicesComponent },
   { path: 'login', component: LoginComponent },
@@ -28,6 +28,12 @@ export const routes: Routes = [
   { path: 'student_registration', component: StudentregistrationComponent },
   { path: 'blogs', component: BlogsComponent },
   { path: 'blogs/:slug', component: BlogDetailsComponent },
-  { path: 'under-construction', component: UnderConstructionComponent }
+  { path: 'under-construction', component: UnderConstructionComponent },
+  { path: 'careers', component: CareersComponent },
+  {
+    path: 'careers-details/:id',
+    loadComponent: () => import('./pages/careers-details/careers-details.component')
+      .then(m => m.CareersDetailsComponent)
+  },
 
 ];

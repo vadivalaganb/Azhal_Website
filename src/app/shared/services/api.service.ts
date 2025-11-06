@@ -64,5 +64,10 @@ export class ApiService {
   getAllBlogs(): Observable<any> {
     return this.get('blogs.php');
   }
-
+  getAllCourse(): Observable<any> {
+    return this.get('course.php');
+  }
+  getCourseById(id: number | string): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/course.php?id=${id}`);
+  }
 }
