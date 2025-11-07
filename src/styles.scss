@@ -234,6 +234,13 @@ html, body {
     padding: 6rem 0 9rem;
   }
 }
+/* background for large screens (desktop) */
+@media (min-width: 2000px) {
+  .hero-header {
+    background: url(assets/shape-desktop.png) center bottom no-repeat;
+    background-size: cover;
+  }
+}
 
 .page-header {
   // margin-bottom: 6rem;
