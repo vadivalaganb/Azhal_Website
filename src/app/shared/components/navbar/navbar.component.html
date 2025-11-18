@@ -6,11 +6,15 @@
 
     <a routerLink routerLinkActive="active"
       [routerLinkActiveOptions]="{exact:true}" class="navbar-brand p-0">
-      <!-- <img src="assets/Azhal_Logo_01.png" alt="Logo"> -->
-      <img *ngIf="!isSticky" src="assets/Azhal_Logo_01.png" alt="Logo">
+      <!-- Desktop view (non-sticky first, sticky after scroll) -->
+      <img *ngIf="!isMobile && !isSticky" src="assets/Azhal_Logo_01.png"
+        alt="Logo">
+      <img *ngIf="!isMobile && isSticky" src="assets/Azhal_Logo.png"
+        alt="Sticky Logo">
 
-      <!-- Sticky Logo (After scroll) -->
-      <img *ngIf="isSticky" src="assets/Azhal_Logo.png" alt="Sticky Logo">
+      <!-- Mobile view (always show sticky logo) -->
+      <img *ngIf="isMobile" src="assets/Azhal_Logo.png" alt="Mobile Logo">
+
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
