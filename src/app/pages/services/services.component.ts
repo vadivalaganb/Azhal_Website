@@ -135,3 +135,22 @@ export class ServicesComponent implements OnInit {
   }
 
 }
+
+// inside your component's initialization (e.g., ngOnInit or onMount)
+
+const triggerEl = document.querySelector('#client-tab');
+
+if (triggerEl) {
+  triggerEl.addEventListener('shown.bs.tab', (event) => {
+    // This code runs every time the tab is clicked and shown
+    console.log('Reviews tab is now visible!');
+    
+    // Call your function to load data here
+    loadClientReviews(); 
+  });
+}
+
+// Example function to load data
+function loadClientReviews() {
+    console.log('Fetching reviews from the server...');
+}

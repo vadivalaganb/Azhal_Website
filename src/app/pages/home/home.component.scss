@@ -3,6 +3,23 @@
     justify-content: center;
 }
 
+.myclass {
+  height: 70vh;
+  overflow: hidden;
+  white-space: pre-line;
+}
+
+.show {
+  overflow: visible;
+  height: auto;
+}
+
+.member-name {
+  padding-top: 30px;
+}
+//     padding: 500x374px;
+// }
+
 // .testimonial-card {
 //   background: #fff;
 //   border: 1px solid transparent;
