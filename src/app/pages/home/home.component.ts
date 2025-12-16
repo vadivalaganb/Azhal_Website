@@ -213,19 +213,19 @@ export class HomeComponent implements OnInit {
 
 }
 
-import { Pipe, PipeTransform } from '@angular/core';
+// import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({
-  name: 'wordLimit'
-})
-export class WordLimitPipe implements PipeTransform {
+// @Pipe({
+//   name: 'wordLimit'
+// })
+// export class WordLimitPipe implements PipeTransform {
 
-  transform(value: string, limit: number = 20): string {
-    if (!value) return '';
+//   transform(value: string, limit: number = 20): string {
+//     if (!value) return '';
 
-    const words = value.split(' ');
-    if (words.length <= limit) return value;
+//     const words = value.split(' ');
+//     if (words.length <= limit) return value;
 
-    return words.slice(0, limit).join(' ') + '...';
-  }
-}
+//     return words.slice(0, limit).join(' ') + '...';
+//   }
+// }
