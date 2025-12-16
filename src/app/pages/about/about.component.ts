@@ -40,7 +40,10 @@ export class AboutComponent implements AfterViewInit {
   loadSections(): void {
     this.apiService.getAboutSections().subscribe({
       next: (sections) => {
-        this.sections = sections;
+        this.sections = sections.map(sec => ({
+          ...sec,
+          showFull: false
+        }));
 
         // For each section, fetch its items
         sections.forEach(sec => {
@@ -50,7 +53,9 @@ export class AboutComponent implements AfterViewInit {
       error: (err) => console.error('Failed to load sections', err)
     });
   }
-
+  toggleSection(section: any): void {
+    section.showFull = !section.showFull;
+  }
   loadItems(sectionId: string | number): void {
     this.apiService.getAboutItems(Number(sectionId)).subscribe({
       next: (items) => this.itemsMap[sectionId] = items,

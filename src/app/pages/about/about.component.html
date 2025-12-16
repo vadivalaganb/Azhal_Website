@@ -30,10 +30,20 @@
                             class="d-inline-block border rounded-pill text-primary px-4 mb-3">About
                             Us</div>
                         <h2 class="mb-4">{{ section.header_name }}</h2>
-                        <p class="mb-4 myaboutclass"  [class.show]="show">{{
-                            section.description }}</p>
-                        <a class="btn btn-primary rounded-pill py-3 px-5 mt-2"
-                            (click)="show = !show">{{ show ? 'Show less': 'Show More' }}</a>
+                        <p class="mb-4 myaboutclass"> {{
+                            section.showFull
+                            ? section.description
+                            : (section.description | slice:0:757)
+                            }}
+                            <span
+                                *ngIf="!section.showFull && section.description?.length > 757">
+                                ...
+                            </span>
+                        </p>
+                        <a *ngIf="section.description?.length > 757"
+                            class="btn btn-primary rounded-pill py-3 px-5 mt-2"
+                            (click)="toggleSection(section)">{{ section.showFull
+                            ? 'Show Less' : 'Show More' }}</a>
                     </div>
                 </div>
 

@@ -29,13 +29,20 @@
                 <div class="row g-5">
                     <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
                         <h2 class="mb-4">{{ section.header_name }}</h2>
-                        <p class="description-text myclass"
-                            [class.show]="show">{{ section.description
-                            }}</p>
+                        <p class="description-text myclass"> {{
+                            section.showFull
+                            ? section.description
+                            : (section.description | slice:0:865)
+                            }}
+                            <span
+                                *ngIf="!section.showFull && section.description?.length > 865">
+                                ...
+                            </span>
+                        </p>
 
-                        <a class="btn btn-primary rounded-pill py-3 px-5 mt-2"
-                            (click)="show = !show">{{ show ? 'Show less':
-                            'Show More' }}</a>
+                        <a *ngIf="section.description?.length > 865" 
+                            class="btn btn-primary rounded-pill py-3 px-5 mt-2"
+                           (click)="toggleSection(section)">{{ section.showFull ? 'Show Less' : 'Show More' }}</a>
                     </div>
                     <div class="col-lg-7" *ngIf="itemsMap[section.id]">
                         <div class="row g-5">
@@ -251,12 +258,13 @@
         <div class="container">
             <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s"
                 style="max-width: 600px;">
-                                <!-- <div
+                <!-- <div
                     class="d-inline-block border rounded-pill text-white px-4 mb-3">Our
                     Technology Stack</div> -->
                 <h2 class="mb-5 text-white">Building Future-Ready Digital
                     Solutions</h2>
-                <p class="text-white">We harness the power of modern technologies and proven
+                <p class="text-white">We harness the power of modern
+                    technologies and proven
                     frameworks to deliver scalable, secure, and high-performance
                     solutions. Our expertise spans web, mobile, and cloud
                     platforms—enabling seamless user experiences and robust

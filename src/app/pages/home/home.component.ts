@@ -67,8 +67,10 @@ export class HomeComponent implements OnInit {
   loadSections(): void {
     this.api.getAboutSections().subscribe({
       next: (sections) => {
-        this.sections = sections;
-
+        this.sections = sections.map(sec => ({
+          ...sec,
+          showFull: false
+        }));
         // For each section, fetch its items
         sections.forEach(sec => {
           this.loadItems(sec.id);
@@ -186,6 +188,9 @@ export class HomeComponent implements OnInit {
       },
       error: (err) => console.error(err)
     });
+  }
+  toggleSection(section: any): void {
+    section.showFull = !section.showFull;
   }
   toggleServiceText(index: number): void {
     this.serviceContents[index].showFullText = !this.serviceContents[index].showFullText;
