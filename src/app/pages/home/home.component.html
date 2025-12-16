@@ -30,8 +30,8 @@
                     <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
                         <h2 class="mb-4">{{ section.header_name }}</h2>
                         <p class="description-text myclass"
-                            [class.show]="show">{{ section.description
-                            }}</p>
+                            [class.show]="show"> {{ show ? section.description : (section.description | wordLimit:20) }}
+                            </p>
 
                         <a class="btn btn-primary rounded-pill py-3 px-5 mt-2"
                             (click)="show = !show">{{ show ? 'Show less':
