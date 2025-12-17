@@ -67,8 +67,10 @@ export class HomeComponent implements OnInit {
   loadSections(): void {
     this.api.getAboutSections().subscribe({
       next: (sections) => {
-        this.sections = sections;
-
+        this.sections = sections.map(sec => ({
+          ...sec,
+          showFull: false
+        }));
         // For each section, fetch its items
         sections.forEach(sec => {
           this.loadItems(sec.id);
@@ -187,6 +189,9 @@ export class HomeComponent implements OnInit {
       error: (err) => console.error(err)
     });
   }
+  toggleSection(section: any): void {
+    section.showFull = !section.showFull;
+  }
   toggleServiceText(index: number): void {
     this.serviceContents[index].showFullText = !this.serviceContents[index].showFullText;
   }
@@ -212,20 +217,3 @@ export class HomeComponent implements OnInit {
   }
 
 }
-
-// import { Pipe, PipeTransform } from '@angular/core';
-
-// @Pipe({
-//   name: 'wordLimit'
-// })
-// export class WordLimitPipe implements PipeTransform {
-
-//   transform(value: string, limit: number = 20): string {
-//     if (!value) return '';
-
-//     const words = value.split(' ');
-//     if (words.length <= limit) return value;
-
-//     return words.slice(0, limit).join(' ') + '...';
-//   }
-// }
