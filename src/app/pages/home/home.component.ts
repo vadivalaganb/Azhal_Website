@@ -26,6 +26,8 @@ export class HomeComponent implements OnInit {
   show: boolean = false;
   email: string = '';
   message: string = '';
+  internMembers: any[] = [];
+  activeTab: 'team' | 'intern' = 'team';
 
   constructor(private api: ApiService) {
     this.baseUrl = this.api.getBaseUrl();
@@ -44,7 +46,7 @@ export class HomeComponent implements OnInit {
     this.loadHomeContent();
     this.loadSections();
     this.loadServiceSection();
-    this.loadTeamMembers();
+    this.loadTeamMembers('team');
     this.loadTestimonials();
   }
 
@@ -103,16 +105,24 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  loadTeamMembers() {
-    this.api.getTeamMembers().subscribe({
+  loadTeamMembers(type: 'team' | 'intern' = 'team') {
+    this.activeTab = type;
+
+    if (type === 'team' && this.teamMembers.length) return;
+    if (type === 'intern' && this.internMembers.length) return;
+
+    this.api.getTeamMembers(type).subscribe({
       next: (res) => {
-        this.teamMembers = res;
+        if (type === 'team') {
+          this.teamMembers = res;
+        } else {
+          this.internMembers = res;
+        }
       },
-      error: (err) => {
-        console.error(err);
-      }
+      error: (err) => console.error(err)
     });
   }
+
   loadTestimonials(): void {
     this.api.getTestimonials().subscribe({
       next: (res) => {

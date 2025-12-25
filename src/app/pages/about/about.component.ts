@@ -17,6 +17,8 @@ export class AboutComponent implements AfterViewInit {
   itemsMap: { [sectionId: string]: any[] } = {}; // Map items by section
   baseUrl = '';
   show: boolean = false;
+  internMembers: any[] = [];
+  activeTab: 'team' | 'intern' = 'team';
 
   constructor(public apiService: ApiService) {
     this.baseUrl = this.apiService.getBaseUrl();
@@ -34,7 +36,7 @@ export class AboutComponent implements AfterViewInit {
     });
     // Fetch sections first
     this.loadSections();
-    this.loadTeamMembers();
+    this.loadTeamMembers('team');
   }
 
   loadSections(): void {
@@ -61,14 +63,21 @@ export class AboutComponent implements AfterViewInit {
       error: (err) => console.error('Failed to load items for section', sectionId, err)
     });
   }
-  loadTeamMembers(): void {
-    this.apiService.getTeamMembers().subscribe({
+  loadTeamMembers(type: 'team' | 'intern' = 'team') {
+    this.activeTab = type;
+
+    if (type === 'team' && this.teamMembers.length) return;
+    if (type === 'intern' && this.internMembers.length) return;
+
+    this.apiService.getTeamMembers(type).subscribe({
       next: (res) => {
-        this.teamMembers = res;
+        if (type === 'team') {
+          this.teamMembers = res;
+        } else {
+          this.internMembers = res;
+        }
       },
-      error: (err) => {
-        console.error(err);
-      }
+      error: (err) => console.error(err)
     });
   }
 }

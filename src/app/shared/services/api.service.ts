@@ -49,8 +49,9 @@ export class ApiService {
   getServiceContents(): Observable<any[]> {
     return this.get<any[]>('services_content.php');
   }
-  getTeamMembers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/team_members.php`);
+  getTeamMembers(type: 'team' | 'intern' = 'team'): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/team_members.php?type=${type}`
+    );
   }
   getProducts(): Observable<any[]> {
     return this.get<any[]>('product_content.php');

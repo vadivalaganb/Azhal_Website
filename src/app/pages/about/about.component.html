@@ -99,34 +99,87 @@
     </div>
 
     <!-- Team Start -->
-    <div class="py-4">
+    <div class="py-6">
         <div class="container">
-            <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s"
+            <div class="mx-auto text-center wow fadeInUp"
+                data-wow-delay="0.1s"
                 style="max-width: 600px;">
                 <div
                     class="d-inline-block border rounded-pill text-primary px-4 mb-3">Our
                     Team</div>
                 <h2 class="mb-5">Meet Our Team Members</h2>
             </div>
-            <div class="row g-4 justify-content-center">
+            <!-- Tabs -->
+            <ul class="nav nav-tabs justify-content-center mb-4" role="tablist">
+                <li class="nav-item">
+                    <button
+                        class="nav-link"
+                        [class.active]="activeTab === 'team'"
+                        (click)="loadTeamMembers('team')">
+                        Our Team
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button
+                        class="nav-link"
+                        [class.active]="activeTab === 'intern'"
+                        (click)="loadTeamMembers('intern')">
+                        Our Interns
+                    </button>
+                </li>
+            </ul>
+
+            <div class="row g-4 justify-content-center"
+                *ngIf="activeTab === 'team'">
                 <div class="col-lg-3 col-md-6 wow fadeInUp"
-                    *ngFor="let member of teamMembers; let i= index"
-                    data-wow-delay="0.1s">
-                    <div class="team-item">
-                        <h5 class="member-name">{{member.name}}</h5>
-                        <p class="mb-4">{{member.designation}}</p>
+                    *ngFor="let member of teamMembers; let i = index"
+                    [attr.data-wow-delay]="0.1 * i + 's'">
+
+                    <div class="team-item text-center">
+                        <h5 class="mt-4">{{ member.name }}</h5>
+                        <p class="mb-4">{{ member.designation }}</p>
+
                         <img class="img-fluid rounded-circle w-100 mb-4"
-                            [src]="member.profile_image ? apiService.getBaseUrl() + '/' +  member.profile_image: 'assets/team-1.jpg'"
-                            alt="{{member.name}}">
+                            [src]="member.profile_image 
+                ? baseUrl + '/' + member.profile_image 
+                : 'assets/team-1.jpg'">
+
                         <div class="d-flex justify-content-center">
                             <a *ngFor="let social of member.social_links"
                                 class="btn btn-square text-primary bg-white m-1"
                                 [href]="social.url" target="_blank">
-                                <i [class]="social.icon"></i></a>
+                                <i [class]="social.icon"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row g-4 justify-content-center"
+                *ngIf="activeTab === 'intern'">
+                <div class="col-lg-3 col-md-6 wow fadeInUp"
+                    *ngFor="let member of internMembers; let i = index"
+                    [attr.data-wow-delay]="0.1 * i + 's'">
+
+                    <div class="team-item text-center">
+                        <h5 class="mt-4">{{ member.name }}</h5>
+                        <p class="mb-4">{{ member.designation }}</p>
+
+                        <img class="img-fluid rounded-circle w-100 mb-4"
+                            [src]="member.profile_image 
+                ? baseUrl + '/' + member.profile_image 
+                : 'assets/team-1.jpg'">
+
+                        <div class="d-flex justify-content-center">
+                            <a *ngFor="let social of member.social_links"
+                                class="btn btn-square text-primary bg-white m-1"
+                                [href]="social.url" target="_blank">
+                                <i [class]="social.icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <!-- Team End -->
